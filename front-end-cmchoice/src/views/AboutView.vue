@@ -1,6 +1,11 @@
+<script setup>
+  import ProductCard from '../components/ProductCard.vue';
+</script>
+
 <template>
   <div class="about">
     <h1>This is an about page</h1>
+    <ProductCard/>
   </div>
 </template>
 
