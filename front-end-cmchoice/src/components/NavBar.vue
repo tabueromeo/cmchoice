@@ -7,9 +7,9 @@
 </script>
 
 <template>
-  <header class="header bg-white">
+  <header class="header bg-white position-sticky top-0 zindex">
         <div class="container px-lg-3">
-          <nav class="navbar position-sticky top-0 navbar-expand-lg navbar-light py-3 px-lg-0">
+          <nav class="navbar  navbar-expand-lg navbar-light py-3 px-lg-0">
             <RouterLink to="/" class="navbar-brand">
                 <span class="fw-bold text-uppercase text-dark">cmchoice</span>
             </RouterLink>
@@ -17,13 +17,13 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav me-auto">
                 <li class="nav-item">
-                  <!-- Link--><RouterLink to="/" class="nav-link " >Home</RouterLink>
+                  <!-- Link--><RouterLink to="/" active-class="activeLink" class="navLink"  activeClass="activeLink">Home</RouterLink>
                 </li>
                 <li class="nav-item">
-                  <!-- Link--><RouterLink to="/shop" class="nav-link" >Shop</RouterLink>
+                  <!-- Link--><RouterLink to="/shop" active-class="activeLink" class="navLink" activeClass="activeLink" >Shop</RouterLink>
                 </li>
                 <li class="nav-item">
-                  <!-- Link--><RouterLink to="/about" class="nav-link" >A propos</RouterLink>
+                  <!-- Link--><RouterLink to="/about" class="navLink" activeClass="activeLink" >A propos</RouterLink>
                 </li>
                 <!-- <li class="nav-item">
                   <a class="nav-link" href="detail.html">Product detail</a>
@@ -34,42 +34,49 @@
               </ul>
               <ul class="navbar-nav ms-auto">               
                 <li class="nav-item" v-if="isAuthenfied">
-                    <RouterLink to="/panier" class="nav-link" > 
+                    <RouterLink to="/panier" class="navLink" activeClass="activeLink" > 
                         <i class="fas fa-dolly-flatbed me-1 text-gray"></i>Panier
                         <small class="text-gray fw-normal">(2)</small>
                     </RouterLink>
                 </li>
                 <li class="nav-item" v-if="isAuthenfied">
-                    <RouterLink to="/favoris" class="nav-link"> 
+                    <RouterLink to="/favoris" class="navLink" activeClass="activeLink"> 
                         <i class="fa-solid fa-heart me-1 text-gray"></i>favoris
                         <small class="text-gray fw-normal"> (0)</small>
                     </RouterLink>
                 </li>
                 <li class="nav-item" v-if="!isAuthenfied">
-                    <RouterLink to="/inscription" class="nav-link" > 
-                        <!-- <i class="fa-regular fa-user-plus me-1 text-gray "></i> -->
+                    <RouterLink to="/inscription" class="navLink"  activeClass="activeLink"> 
                         <i class="fa-solid fa-user-plus me-1 text-gray"></i>
-                        <!-- <i class="fas fa-user me-1 text-gray fw-normal"></i> -->
                         S'inscrire
                     </RouterLink>
                 </li>
                 <li class="nav-item" v-if="!isAuthenfied">
-                    <RouterLink to="/connexion" class="nav-link" > 
+                    <RouterLink to="/connexion" class="navLink"  activeClass="activeLink"> 
                         <i class="fa-solid fa-right-to-bracket me-1 text-gray "></i>
-                        <!-- <i class="fas fa-user me-1 text-gray fw-normal"></i> -->
                         Se connecter
                     </RouterLink>
                 </li>
               </ul>
             </div>
           </nav>
+          
         </div>
       </header>
 </template>
 
 <style scoped>
-   
-    
+   .navLink {
+    display: block;
+  padding: 0.5rem 1rem;
+  font-weight: 700;
+  /* color: #dcb14a; */
+  text-decoration: none;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+   }
+    .activeLink {
+        color: #dcb14a;
+    }
     .navbar .dropdown-menu {
     border-top: 2px solid #dcb14a;
     }
@@ -149,6 +156,10 @@
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.1em;
+    }
+
+    .zindex {
+        z-index: 1030;
     }
 
 

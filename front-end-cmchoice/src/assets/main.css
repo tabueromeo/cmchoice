@@ -4042,11 +4042,11 @@ fieldset:disabled .btn {
   color: #b68b23;
 }
 
-.nav-link.disabled {
+/* .nav-link.disabled {
   color: #6c757d;
   pointer-events: none;
   cursor: default;
-}
+} */
 
 .nav-tabs {
   border-bottom: 0 solid #dee2e6;
@@ -10958,7 +10958,7 @@ button:focus, button:active {
 * ==========================================
 *
 */
-.category-item {
+/* .category-item {
   display: block;
   position: relative;
   color: #343a40;
@@ -10985,7 +10985,7 @@ button:focus, button:active {
 
 .category-item:hover img {
   opacity: 0.7;
-}
+} */
 
 /*
 *
@@ -11081,7 +11081,7 @@ button:focus, button:active {
 * ==========================================
 *
 */
-.footer-link {
+/* .footer-link {
   font-size: 0.85rem;
   position: relative;
   color: #999;
@@ -11110,7 +11110,7 @@ button:focus, button:active {
   color: #fff;
   transition: all 0.3s;
   opacity: 0;
-}
+} */
 
 /*
 * ===================================================
