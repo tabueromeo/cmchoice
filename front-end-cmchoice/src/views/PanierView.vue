@@ -1,5 +1,5 @@
 <template>
-    <div class="container-section">
+     <div class="container-section">
         <!-- CART SECTION-->
         <section class="cart-section pt-pb-5 bg-light">
             <div class="cart-section-container">
@@ -47,11 +47,11 @@
                                 <div class=" border flex aic jcsb px-3">
                                   <span class="small text-uppercase text-gray">Quantity</span>
                                   <div class="quantity">
-                                    <button class="dec-btn p-0">
+                                    <button v-on:click="ReducedQuantity" class="dec-btn p-0">
                                       <i class="fas fa-caret-left"></i>
                                     </button>
-                                    <input class="form-control form-control-sm border-0 shadow-0 p-0" type="text" value="1"/>
-                                    <button class="inc-btn p-0">
+                                    <input id="InputQuantity" class="form-control form-control-sm border-0 shadow-0 p-0" type="text" value="1"/>
+                                    <button  v-on:click="MoreQuantity" class="inc-btn p-0">
                                       <i class="fas fa-caret-right"></i>
                                     </button>
                                   </div>
@@ -81,7 +81,7 @@
                                     <button class="dec-btn p-0">
                                       <i class="fas fa-caret-left"></i>
                                     </button>
-                                    <input class="form-control form-control-sm border-0 shadow-0 p-0" type="text" value="1"/>
+                                    <input  class="form-control form-control-sm border-0 shadow-0 p-0" type="text" value="1"/>
                                     <button class="inc-btn p-0">
                                       <i class="fas fa-caret-right"></i>
                                     </button>
@@ -102,12 +102,14 @@
                   <div class="bg-light px-4 py-3">
                     <div class="shopping-cart-navigation flex row jcsb ">
                           <div class="ContinueShop"><i class="fas fa-long-arrow-alt-left"></i>  Continue shopping</div>
-                          <div class="proceed">Procceed to checkout  <i class="fas fa-long-arrow-alt-right"></i></div>
+                          <RouterLink to="/Cart/Checkout">
+                            <div class="proceed">Procceed to checkout  <i class="fas fa-long-arrow-alt-right"></i></div>
+                          </RouterLink>
                     </div> 
                   </div>
               </div>
            <!-- CART TOTAL-->
-           <div class="card-total card border-0 rounded-0 p-lg-4 bg-light">
+           <div class="card-total card border-0 rounded-0 p-lg-4 bg-light flex-04">
              <div class="card-body_cl-2">
                  <h5 class="text-uppercase mb-4 h5">Cart total</h5>
                  <ul class="p-0">
@@ -120,15 +122,6 @@
                      <strong class="text-uppercase">Total</strong>
                      <span>$250</span>
                     </li>
-                   <li>
-                     <form>
-                       <div class="input-group mb-0">
-                         <input class="form-control out-none" type="text" placeholder="Enter your coupon">
-                         <button class="apply w-100" type="submit"> 
-                           <i class="fas fa-gift"></i>  Apply coupon</button>
-                       </div>
-                     </form>
-                   </li>
                  </ul>
                </div>
            </div>
@@ -146,18 +139,29 @@ export default {
 
   data() { 
         return { 
+           // siblings : "",
             
         }
     },
   methods: {
-      
+      ReducedQuantity() {
+        var siblings = document.getElementById('InputQuantity');
+			  if (parseInt(siblings.value, 10) >= 1) {
+			  	siblings.value = parseInt(siblings.value, 10) - 1;
+			  }
+      },
+
+      MoreQuantity() {
+        var siblings = document.getElementById('InputQuantity');
+			   siblings.value = parseInt(siblings.value, 10) + 1;
+      }
    },
 
 }
 </script>
 
 <style>
-:root {
+  :root {
 
   /* COLOR */
   --bs-white: #fff;
@@ -385,6 +389,9 @@ small,
   align-items: stretch;
   width: 100%;
 }
+.font-size-22{
+  font-size: 22px;
+}
 
 .w-100 {
   width: 100% !important;
@@ -403,7 +410,7 @@ button,
 [type="button"],
 [type="reset"],
 [type="submit"] {
-  -webkit-appearance: button;
+-webkit-appearance: button;
 }
 
 button,
@@ -500,6 +507,14 @@ button {
   display: flex;
 }
 
+.flex-d-r{
+  flex-direction: row;
+}
+
+.flex-d-c{
+  flex-direction: column;
+}
+
 .flex-1 {
   flex: 1;
 }
@@ -514,6 +529,22 @@ button {
 
 .flex-4 {
   flex: 4;
+}
+.flex-04 {
+  flex: 0.4;
+}
+
+.gap-5{
+  gap: 5px;
+}
+.gap-10{
+  gap: 10px;
+}
+.gap-15{
+  gap: 15px;
+}
+.gap-20{
+  gap: 20px;
 }
 
 .jcc {
@@ -699,5 +730,67 @@ strong {
 
 .out-none {
   outline: none;
+}
+a[href="/Cart/Checkout"]{
+   color: black;
+    text-decoration: none;
+}
+
+@media screen and (max-width: 1256px) {
+  .shopping-cart-section{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+ .shopping-cart-table{
+    overflow-x: auto;
+  }
+  .card-total{
+    margin: 0;
+  }
+  .container-section {
+    margin: 0 100px;
+  }
+}
+@media screen and (max-width: 910px) {
+  .cart-section-container {
+    flex-direction: column;
+  }
+  .cart-section-container .cart-liste ul {
+    padding-left: 0;
+  }
+  .shopping-cart-navigation {
+    justify-content: center;
+  }
+}
+@media screen and (max-width: 572px) {
+  .container-section {
+    margin: 0 50px;
+  }
+}
+@media screen and (max-width: 572px) {
+  .container-section {
+    margin: 0 50px;
+  }
+}
+@media screen and (max-width: 512px) {
+  .cart-section-container{
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .cart-section-container .cart-liste ul{
+    padding: 0;
+  }
+  .shopping-cart-navigation{
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+  }
+  .cart-section-container .cart-liste ul {
+   flex-direction: column;
+   align-items: center;
+  }
 }
 </style>

@@ -2,16 +2,13 @@
 import { RouterLink, RouterView } from 'vue-router'
 //import HelloWorld from './components/HelloWorld.vue'
 import PanierView from './views/PanierView.vue'
-import TableModeration from './views/TableModeration.vue'
 </script>
 
 <template>
      <header>
-       <RouterLink to="/Panier">PANIER</RouterLink>
-       <RouterLink to="/TableModeration">Moderation</RouterLink>
+       <RouterLink to="/Cart">CART</RouterLink>
      </header>
    <router-view ></router-view>
-   
 
 </template>
 

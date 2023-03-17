@@ -10,21 +10,23 @@ const router = createRouter({
     //   component: HomeView
     // },
     {
-      path: '/Panier',
-      name: 'Panier name',
+      path: '/Cart',
+      name: 'Cart name',
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () => import('../views/PanierView.vue')
+    } ,
+    {
+      path: '/Cart/Checkout',
+      name: 'Checkout name',
+      component: () => import('../views/CheckoutView.vue')
     },
     {
-      path: '/TableModeration',
-      name: 'Table Moderation',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import('../views/TableModeration.vue')
-    }
+      path: '/Cart/Checkout/Delivery',
+      name: 'Delivery name',
+      component: () => import('../views/DeliveryView.vue')
+    },
   ]
 })
 
