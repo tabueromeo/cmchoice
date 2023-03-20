@@ -1,121 +1,92 @@
 <template>
   <div class="container">
-    <h3>Inscription</h3>
 <br>
-    <!-- <div class="contain-form"> -->
-      <form action="#" method="post">
-        <div class="form-group">
+    <form action="#" method="post">
+    <h3>Inscription</h3>
+      <div class="form-group">
+        <span><img src="../assets/User.svg" alt="user icon"></span>
+        <input type="text" placeholder="username" class="form-field">
+      </div>
+      <div class="form-group">
+        <span><img src="../assets/SecuredL.svg" alt="user icon"></span>
+        <input type="text" placeholder="email" class="form-field">
+      </div>
+      <div class="form-group">
+        <span><img src="../assets/Password.svg" alt="user icon"></span>
+        <input type="password" placeholder="Password" class="form-field">
+      </div>
+      <div class="form-group">
+        <span><img src="../assets/Password.svg" alt="user icon"></span>
+        <input type="password" placeholder="Confirm password" class="form-field">
+      </div>
+      <div class="form-group ">
+        <span><img src="../assets/User.svg" alt="user icon"></span>
+        <input type="tel" placeholder="Contact" class="form-field">
+      </div>
+      <!-- <div class="txt"> -->
+        <div class="form-group " v-if="role==='producteur'">
           <span><img src="../assets/User.svg" alt="user icon"></span>
-          <input type="text" placeholder="username" class="form-field">
+          <input type="text" placeholder="Domaine d'activité" class="form-field vendeur">
         </div>
-        <div class="form-group">
+        <div class="form-group " v-if="role==='producteur'">
           <span><img src="../assets/User.svg" alt="user icon"></span>
-          <input type="text" placeholder="email" class="form-field">
+          <input type="text" placeholder="Nom de la société" class="form-field vendeur">
         </div>
-        <div class="form-group">
+        <div class="form-group " v-if="role==='producteur'">
           <span><img src="../assets/User.svg" alt="user icon"></span>
-          <input type="password" placeholder="Password" class="form-field">
+          <input type="text" placeholder="Etat civil" class="form-field vendeur">
         </div>
-        <div class="form-group">
-          <span><img src="../assets/User.svg" alt="user icon"></span>
-          <input type="password" placeholder="Confirm password" class="form-field">
+      <!-- </div> -->
+      <div class="form-check">
+        <div class="ckeck">
+          <input v-model="role"  type="radio" id="userChoice1" name="user" value="client" checked>
+          <label for="client">Client</label>
         </div>
-        <div class="form-group">
-          <span><img src="../assets/User.svg" alt="user icon"></span>
-          <input type="telephone" placeholder="Contact" class="form-field">
+        <div class="ckeck">
+          <input v-model="role" type="radio" id="userChoice2" name="user" value="producteur" @click="fUn">
+          <label for="userChoice2">Vendeur</label>
         </div>
-        <div class="form-group">
-          <span><img src="../assets/User.svg" alt="user icon"></span>
-          <input type="text" placeholder="Domaine d'activité" class="form-field">
-        </div>
-        <div class="form-group">
-          <span><img src="../assets/User.svg" alt="user icon"></span>
-          <input type="text" placeholder="Nom de la société" class="form-field">
-        </div>
-        <div class="form-group">
-          <span><img src="../assets/User.svg" alt="user icon"></span>
-          <input type="text" placeholder="Etat civil" class="form-field">
-        </div>
-        <div class="form-check">
-          <div class="ckeck">
-            <input type="checkbox" name="Producteur" id="Producteur"><label for="#">Client</label>
-          </div>
-          <div class="ckeck">
-            <input type="checkbox" name="Producteur" id="Producteur"><label for="#">Vendeur</label>
-          </div>
-        </div>
+      </div>
 
-        <div class="form-btn">
-          <button>Soumettre</button>
-        </div>
-      </form>
-    <!-- </div> -->
+      <div class="form-btn">
+        <button>Soumettre</button>
+      </div>
+    </form>
   </div>
 </template>
 
-<script>
+<script setup>
+  import { ref } from 'vue';
 
+  // var txtBox = document.getElementsByClassName('txt')[0];
+  // var button = document.getElementById('userChoice2');
+
+  // function fUn() {
+  //     console.log("bjr " + txtBox);
+  //   if (button.checked === true) {
+  //     txtBox.style.display = "block"
+  //   }
+  // } 
+  const role = ref("")
 </script>
 
 <style>
-  .container{
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-  }
-  /* form .form-group, .form-check{
-    max-width: 360px;
+  /* .txt{
+    display: none !important;
   } */
-  form .form-group:not(:last-child){
-    margin-bottom: 10px;
-  }
-
-  form{
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    grid-area: form;
-  }
-  .user{
-    display: flex;
-    border-bottom: 1px solid black;
-  }
-  .form-group{
-    position: relative;
-    display: flex;
-    width: 100%;
-    border-bottom: 1px solid #000000;
-    flex: 1;
-  }
-  span{
-    position: absolute;
-    left: 0;
-    top: -1px;
-  }
-  .form-group > span, .form-field{
-    border-radius: 0;
-  }
-  input{
-    border: none;
-    padding: 10px 0  0 35px;
-    font-size: 1rem;
-    outline: none;
-    flex: 1;
-  }
-  input::placeholder{
-    opacity: 0.5;
-  }
-  input:hover{
-    border-bottom: 1px solid red;
-  }
-  .form-check{
-    display: flex;
-    justify-content: space-between;
-    /* flex-direction: column; */
-  }
+  
+  @media screen and (max-width: 685px){
+        form{
+            width: 60%;
+            gap: 8px;
+            
+        }
+        .container{
+          height: 100%;
+        }
+        .form-check{
+          margin: 10px 0 25px 0;
+        }
+    }
   
 </style>
