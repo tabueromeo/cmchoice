@@ -54,8 +54,6 @@ import Login from '../components/Login.vue'
         font-weight: 700;
     }
 
-
-    
     .container{
       display: flex;
       justify-content: center;
@@ -97,11 +95,11 @@ import Login from '../components/Login.vue'
       border-radius: 0;
     }
     .form-group:hover{
-      border-bottom: 1px solid red;
+      border-bottom: 1px solid #30df79;
     }
     input{
       border: none;
-      padding: 10px 0  0 35px;
+      padding: 3px 0  0 40px;
       font-size: 1rem;
       outline: none;
       flex: 1;

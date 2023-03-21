@@ -5,7 +5,7 @@
     <h3>Inscription</h3>
       <div class="form-group">
         <span><img src="../assets/User.svg" alt="user icon"></span>
-        <input type="text" placeholder="username" class="form-field">
+        <input type="text" placeholder="Nom d'utilisateur" class="form-field">
       </div>
       <div class="form-group">
         <span><img src="../assets/SecuredL.svg" alt="user icon"></span>
@@ -13,15 +13,15 @@
       </div>
       <div class="form-group">
         <span><img src="../assets/Password.svg" alt="user icon"></span>
-        <input type="password" placeholder="Password" class="form-field">
+        <input type="password" placeholder="Mot de passe" class="form-field">
       </div>
       <div class="form-group">
         <span><img src="../assets/Password.svg" alt="user icon"></span>
-        <input type="password" placeholder="Confirm password" class="form-field">
+        <input type="password" placeholder="Confirmez le mot de passe" class="form-field">
       </div>
       <div class="form-group ">
-        <span><img src="../assets/User.svg" alt="user icon"></span>
-        <input type="tel" placeholder="Contact" class="form-field">
+        <span><img src="../assets/Phone.svg" alt="user icon"></span>
+        <input type="tel" placeholder="Numéro de télépone portable" class="form-field">
       </div>
       <!-- <div class="txt"> -->
         <div class="form-group " v-if="role==='producteur'">
@@ -76,17 +76,16 @@
   } */
   
   @media screen and (max-width: 685px){
-        form{
-            width: 60%;
-            gap: 8px;
-            
-        }
-        .container{
-          height: 100%;
-        }
-        .form-check{
-          margin: 10px 0 25px 0;
-        }
+    form{
+        width: 60%;
+        gap: 8px;  
     }
+    .container{
+      height: 100%;
+    }
+    .form-check{
+      margin: 10px 0 25px 0;
+    }
+  }
   
 </style>
