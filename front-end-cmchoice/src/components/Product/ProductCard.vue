@@ -1,6 +1,6 @@
 <template>
-  <div class="product--card">
-    <div class="">
+  <!-- <div class="product--card "> -->
+    <div class="col-lg-4 col-sm-6 col-6">
       <div class="product text-center">
           <div class="position-relative mb-3">
               <div class="badge text-white bg-primary">Sale</div>
@@ -61,7 +61,7 @@
         </div>
       </div>
 
-  </div>
+  <!-- </div> -->
 </template>
 
 <script>
@@ -71,5 +71,62 @@ export default {
 </script>
 
 <style>
-    
+    /*
+*
+* ==========================================
+* PRODUCT
+* ==========================================
+*
+*/
+.product img {
+  filter: grayscale(40%);
+  transition: all 0.3s;
+}
+
+.product-overlay {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 1rem 0;
+  opacity: 0;
+  transition: all 0.3s;
+}
+
+.product-overlay ul li {
+  transition: all 0.3s;
+}
+
+.product-overlay ul li:first-of-type {
+  transform: translateX(-10px);
+  opacity: 0;
+}
+
+.product-overlay ul li:last-of-type {
+  transform: translateX(10px);
+  opacity: 0;
+}
+
+.product:hover img {
+  opacity: 0.3;
+}
+
+.product:hover .product-overlay {
+  opacity: 1;
+}
+
+.product:hover .product-overlay li {
+  opacity: 1;
+  transform: none;
+}
+
+.product .badge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 1;
+}
 </style>

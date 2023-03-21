@@ -4018,7 +4018,7 @@ fieldset:disabled .btn {
 .nav {
   display: flex;
   flex-wrap: wrap;
-  padding-left: 0;
+  padding-left: 0 !important;
   margin-bottom: 0;
   list-style: none;
 }
@@ -4326,7 +4326,7 @@ fieldset:disabled .btn {
   }
 }
 
-@media (min-width: 992px) {
+/* @media (min-width: 992px) {
   .navbar-expand-lg {
     flex-wrap: nowrap;
     justify-content: flex-start;
@@ -4378,7 +4378,7 @@ fieldset:disabled .btn {
     padding: 0;
     overflow-y: visible;
   }
-}
+} */
 
 @media (min-width: 1200px) {
   .navbar-expand-xl {
@@ -10994,7 +10994,7 @@ button:focus, button:active {
 * ==========================================
 *
 */
-.product img {
+/* .product img {
   filter: grayscale(40%);
   transition: all 0.3s;
 }
@@ -11044,7 +11044,7 @@ button:focus, button:active {
   top: 1rem;
   right: 1rem;
   z-index: 1;
-}
+} */
 
 /*
 *

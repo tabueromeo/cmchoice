@@ -6,8 +6,8 @@
 
 <template>
     <div class="d-flex justify-content-center bg-white position-sticky top-10 w-100 zindex">
-    <!-- <div class="col "> -->
-        <form  class="searchBarWidth  container " @submit.prevent="handleSearch">
+    
+        <form  class="searchBarWidth" @submit.prevent="handleSearch">
             <div class="d-flex py-2">
                 <input class="form-control" id="resarch" type="text" placeholder="rechercher un produit" aria-describedby="recherche">
                 <button class="btn btn-primary ms-2" type="submit" >
@@ -15,7 +15,7 @@
                 </button>
             </div>
         </form>
-    <!-- </div> -->
+    
     </div>
     <section class="py-5 bg-light mt-10">
         <div class="container ">
@@ -37,23 +37,37 @@
 </template>
 
 <style scoped>
-    @media only screen and (min-width: 768px) {
+    /* .top-10 {
+        top: 70px;
+    } */
+    @media only screen and (min-width: 992px) {
     .searchBarWidth {
-        width: 50%;
+        width: 80%;
     }
+   
+    
    }
-   @media only screen and (max-width: 768px) {
+   @media only screen and (max-width: 992px) {
     .searchBarWidth {
         width: 100%;
     }
    }
+   @media only screen and (min-width: 768px) {
+    .top-10 {
+        top: 70px !important;
+    }
+   }
+
+   @media only screen and (max-width: 767.9px) {
+        .top-10 {
+            top: 59px !important;
+        }
+   }
    .mt-10 {
-    margin-top: 10px;
+        margin-top: 10px;
    }
-   .top-10 {
-    top: 70px;
-   }
+   
    .zindex {
-    z-index: 1030;
+        z-index: 1020;
    }
 </style>
