@@ -1,5 +1,5 @@
 <script setup>
-  import ProductCard from '../components/ProductCard.vue';
+  import ProductCard from '../components/Product/ProductCard.vue';
 </script>
 <template>
     <section class="py-5">
@@ -8,7 +8,7 @@
                 <div class="col-lg-6">
                     <!-- PRODUCT SLIDER-->
                     <div class="row m-sm-0">
-                        <div class="col-sm-2 p-sm-0 order-2 order-sm-1 mt-2 mt-sm-0 px-xl-2">
+                        <div class="col-12 col-lg-10 p-sm-0 order-2 order-sm-1 mt-2 mt-sm-0 px-xl-2">
                             <div class="parent position-relative ">
                                 <div id="CarousselDemo" class="carousel slide" data-bs-ride="false">
                                     <div class="carousel-inner">
@@ -170,20 +170,18 @@ export default {
 </script>
 
 <style>
-    .carousel-indicators {
+    .carousel{
+      display: flex;
+      gap: 10px;
+    }
+    .carousel .carousel-indicators {
     margin: 0;
     padding: 0;
     height: 100%;
-    align-items: center;
     flex-direction: column;
     justify-content: start;
     gap: 12px;
-    left: -95px;
-    right: unset;
-}
-
-.carousel-indicators [data-bs-target]{
-    height: 100px;
+    position: unset;
 }
 
 .carousel-indicators button.thumbnail{
@@ -193,9 +191,9 @@ export default {
     border: none;
 }
 
-.parent{
-    width: 400px;
+/* .parent{
+    width: 100%;
     margin: 30px;
-}
+} */
 
 </style>
