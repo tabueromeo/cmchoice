@@ -8,70 +8,68 @@
                 <div class="col-lg-6">
                     <!-- PRODUCT SLIDER-->
                     <div class="row m-sm-0">
-                        <div class="col-12 col-lg-10 p-sm-0 order-2 order-sm-1 mt-2 mt-sm-0 px-xl-2">
-                            <div class="parent position-relative ">
-                                <div id="CarousselDemo" class="carousel slide" data-bs-ride="false">
-                                    <div class="carousel-inner">
-                                        <div class="carousel-item active">
-                                            <img src="/img/product-5.jpg" alt="" class="d-block w-100">
-                                        </div>
-                                        <div class="carousel-item">
-                                            <img src="/img/product-detail-2.jpg" alt="" class="d-block w-100">
-                                        </div>
-                                        <div class="carousel-item">
-                                            <img src="/img/product-detail-3.jpg" alt="" class="d-block w-100">
-                                        </div>
-                                        <div class="carousel-item">
-                                            <img src="/img/product-detail-4.jpg" alt="" class="d-block w-100">
-                                        </div>
-                                    </div>
-                                    <div class="carousel-indicators ">
-                                        <button data-bs-target="#CarousselDemo" data-bs-slide-to="0" class="active thumbnail">
-                                            <img src="/img/product-5.jpg" class="d-block h-100 w-100"  alt="">
-                                        </button>
-                                        <button data-bs-target="#CarousselDemo" data-bs-slide-to="1" class="active thumbnail">
-                                            <img src="/img/product-detail-2.jpg" class="d-block h-100 w-100"  alt="">
-                                        </button>
-                                        <button data-bs-target="#CarousselDemo" data-bs-slide-to="2" class="active thumbnail">
-                                            <img src="/img/product-detail-3.jpg" class="d-block h-100 w-100"  alt="">
-                                        </button>
-                                        <button data-bs-target="#CarousselDemo" data-bs-slide-to="3" class="active thumbnail">
-                                            <img src="/img/product-detail-4.jpg" class="d-block h-100 w-100"  alt="">
-                                        </button>
-                                    </div>
+                        <div id="CarousselDemo" class="carousel slide" data-bs-ride="false">
+                            <div class="carousel-indicators ">
+                                <button data-bs-target="#CarousselDemo" data-bs-slide-to="0" class="active thumbnail">
+                                    <img src="/img/product-5.jpg" class="d-block h-100 w-100"  alt="">
+                                </button>
+                                <button data-bs-target="#CarousselDemo" data-bs-slide-to="1" class="active thumbnail">
+                                    <img src="/img/product-detail-2.jpg" class="d-block h-100 w-100"  alt="">
+                                </button>
+                                <button data-bs-target="#CarousselDemo" data-bs-slide-to="2" class="active thumbnail">
+                                    <img src="/img/product-detail-3.jpg" class="d-block h-100 w-100"  alt="">
+                                </button>
+                                <button data-bs-target="#CarousselDemo" data-bs-slide-to="3" class="active thumbnail">
+                                    <img src="/img/product-detail-4.jpg" class="d-block h-100 w-100"  alt="">
+                                </button>
+                            </div>
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <img src="/img/product-5.jpg" alt="" class="d-block w-100">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="/img/product-detail-2.jpg" alt="" class="d-block w-100">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="/img/product-detail-3.jpg" alt="" class="d-block w-100">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="/img/product-detail-4.jpg" alt="" class="d-block w-100">
                                 </div>
                             </div>
+                            
                         </div>
                     </div>
                 </div>
                 <!-- PRODUCT DETAILS-->
                 <div class="col-lg-6">
                     <ul class="list-inline mb-2 text-sm">
-                    <li class="list-inline-item m-0"><i class="fas fa-star small text-warning"></i></li>
-                    <li class="list-inline-item m-0 1"><i class="fas fa-star small text-warning"></i></li>
-                    <li class="list-inline-item m-0 2"><i class="fas fa-star small text-warning"></i></li>
-                    <li class="list-inline-item m-0 3"><i class="fas fa-star small text-warning"></i></li>
-                    <li class="list-inline-item m-0 4"><i class="fas fa-star small text-warning"></i></li>
+                        <li class="list-inline-item m-0"><i class="fas fa-star small text-warning"></i></li>
+                        <li class="list-inline-item m-0 1"><i class="fas fa-star small text-warning"></i></li>
+                        <li class="list-inline-item m-0 2"><i class="fas fa-star small text-warning"></i></li>
+                        <li class="list-inline-item m-0 3"><i class="fas fa-star small text-warning"></i></li>
+                        <li class="list-inline-item m-0 4"><i class="fas fa-star small text-warning"></i></li>
                     </ul>
                     <h1>{{ product_name }}</h1>
                     <p class="text-muted lead">${{product_price}}</p>
                     <p class="text-sm mb-4">{{product_description}}</p>
                     <div class="row align-items-stretch mb-4">
-                    <div class="col-sm-5 pr-sm-0">
-                        <div class="border d-flex align-items-center justify-content-between py-1 px-3 bg-white border-white"><span class="small text-uppercase text-gray mr-4 no-select">Quantity</span>
-                        <div class="quantity">
-                            <button @click="decrement()" class="p-0"><i class="fas fa-caret-left"></i></button>
-                            <input class="form-control border-0 shadow-0 p-0" type="text" v-model="count">
-                            <button @click="increment()" class="p-0"><i class="fas fa-caret-right"></i></button>
+                        <div class="col-sm-5 pr-sm-0">
+                            <div class="border d-flex align-items-center justify-content-between py-1 px-3 bg-white border-white"><span class="small text-uppercase text-gray mr-4 no-select">Quantity</span>
+                                <div class="quantity">
+                                    <button @click="decrement()" class="p-0"><i class="fas fa-caret-left"></i></button>
+                                    <input class="form-control border-0 shadow-0 p-0" type="text" v-model="count">
+                                    <button @click="increment()" class="p-0"><i class="fas fa-caret-right"></i></button>
+                                </div>
+                            </div>
                         </div>
-                        </div>
+                        <div class="col-sm-3 pl-sm-0"><a class="btn btn-dark btn-sm btn-block h-100 d-flex align-items-center justify-content-center px-0" href="cart.html">Add to cart</a></div>
                     </div>
-                    <div class="col-sm-3 pl-sm-0"><a class="btn btn-dark btn-sm btn-block h-100 d-flex align-items-center justify-content-center px-0" href="cart.html">Add to cart</a></div>
-                    </div><a class="text-dark p-0 mb-4 d-inline-block" href="#!"><i class="far fa-heart me-2"></i>Add to wish list</a><br>
+                    <a class="text-dark p-0 mb-4 d-inline-block" href="#!"><i class="far fa-heart me-2"></i>Add to wish list</a><br>
                     <ul class="list-unstyled small d-inline-block">
-                    <li class="px-3 py-2 mb-1 bg-white"><strong class="text-uppercase">SKU:</strong><span class="ms-2 text-muted">{{ product_sku }}</span></li>
-                    <li class="px-3 py-2 mb-1 bg-white text-muted"><strong class="text-uppercase text-dark">Category:</strong><a class="reset-anchor ms-2" href="#!">{{ product_category }}</a></li>
-                    <li class="px-3 py-2 mb-1 bg-white text-muted"><strong class="text-uppercase text-dark">Tags:</strong><a class="reset-anchor ms-2" href="#!">{{ product_tags }}</a></li>
+                        <li class="px-3 py-2 mb-1 bg-white"><strong class="text-uppercase">SKU:</strong><span class="ms-2 text-muted">{{ product_sku }}</span></li>
+                        <li class="px-3 py-2 mb-1 bg-white text-muted"><strong class="text-uppercase text-dark">Category:</strong><a class="reset-anchor ms-2" href="#!">{{ product_category }}</a></li>
+                        <li class="px-3 py-2 mb-1 bg-white text-muted"><strong class="text-uppercase text-dark">Tags:</strong><a class="reset-anchor ms-2" href="#!">{{ product_tags }}</a></li>
                     </ul>
                 </div> 
             </div>
@@ -172,7 +170,7 @@ export default {
 <style>
     .carousel{
       display: flex;
-      gap: 10px;
+      gap: 20px;
     }
     .carousel .carousel-indicators {
     margin: 0;
@@ -180,7 +178,7 @@ export default {
     height: 100%;
     flex-direction: column;
     justify-content: start;
-    gap: 12px;
+    gap: 16px;
     position: unset;
 }
 
@@ -191,9 +189,9 @@ export default {
     border: none;
 }
 
-/* .parent{
+.parent{
     width: 100%;
     margin: 30px;
-} */
+}
 
 </style>

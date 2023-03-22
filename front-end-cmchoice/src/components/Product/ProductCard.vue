@@ -7,11 +7,11 @@
                 <RouterLink to="/detail" activeClass="activeLink" ><img class="img-fluid w-100" src="img/product-1.jpg" alt="..."></RouterLink>
                 <div class="product-overlay">
                   <ul class="mb-0 list-inline">
-                      <li class="list-inline-item m-0 p-0">
+                      <li class="list-inline-item m-0 p-0 mx-1">
                         <a class="btn btn-sm btn-outline-dark" href="#!"><i class="far fa-heart"></i></a></li>
                       <li class="list-inline-item m-0 p-0">
                         <a class="btn btn-sm btn-dark" href="cart.html">Add to cart</a></li>
-                      <li class="list-inline-item me-0">
+                      <li class="list-inline-item me-0 mx-1">
                         <a class="btn btn-sm btn-outline-dark" href="#productView" data-bs-toggle="modal"><i class="fas fa-expand"></i></a></li>
                   </ul>
                 </div>
@@ -63,7 +63,7 @@
               </div>
             </div>
           </div>
-        </div>
+      </div>
     </div>
   </template>
   
@@ -96,57 +96,61 @@
   </script>
   
   <style>
-  .product img {
-  filter: grayscale(40%);
-  transition: all 0.3s;
-}
+    .product{
+      margin: 24px 24px;
+    }
 
-.product-overlay {
-  width: 100%;
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  padding: 1rem 0;
-  opacity: 0;
-  transition: all 0.3s;
-}
+      .product img {
+      filter: grayscale(40%);
+      transition: all 0.3s;
+    }
 
-.product-overlay ul li {
-  transition: all 0.3s;
-}
+    .product-overlay {
+      width: 100%;
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding: 1rem 0;
+      opacity: 0;
+      transition: all 0.3s;
+    }
 
-.product-overlay ul li:first-of-type {
-  transform: translateX(-10px);
-  opacity: 0;
-}
+    .product-overlay ul li {
+      transition: all 0.3s;
+    }
 
-.product-overlay ul li:last-of-type {
-  transform: translateX(10px);
-  opacity: 0;
-}
+    .product-overlay ul li:first-of-type {
+      transform: translateX(-10px);
+      opacity: 0;
+    }
 
-.product:hover img {
-  opacity: 0.3;
-}
+    .product-overlay ul li:last-of-type {
+      transform: translateX(10px);
+      opacity: 0;
+    }
 
-.product:hover .product-overlay {
-  opacity: 1;
-}
+    .product:hover img {
+      opacity: 0.3;
+    }
 
-.product:hover .product-overlay li {
-  opacity: 1;
-  transform: none;
-}
+    .product:hover .product-overlay {
+      opacity: 1;
+    }
 
-.product .badge {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  z-index: 1;
-} 
+    .product:hover .product-overlay li {
+      opacity: 1;
+      transform: none;
+    }
+
+    .product .badge {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      z-index: 1;
+    } 
 
 
   </style>
