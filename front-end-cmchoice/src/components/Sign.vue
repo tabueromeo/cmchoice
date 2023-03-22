@@ -94,7 +94,7 @@
 
   const handleUserName = () => {
     if (!validator.isAlphanumeric(userName.value) || (userName.value === '')) {
-      messageUserName.value = "Entrer un nom d'utilisateur valide."
+      messageUserName.value = "Entrez un nom d'utilisateur valide."
     }
   }
 
