@@ -97,7 +97,7 @@
   
   <style>
     .product{
-      margin: 24px 24px;
+      /* margin: 24px 24px; */
     }
 
       .product img {
