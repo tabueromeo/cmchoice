@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import LoginView from '../views/LoginView.vue'
+// import Update_account from '../components/Update_account'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -22,7 +23,12 @@ const router = createRouter({
       path: '/login', //Route pour la connexion
       name: 'connexion',
       component: LoginView
-    }
+    },
+    // {
+    //   path: '/Update_account', //Route pour la connexion
+    //   name: 'Update_account',
+    //   component: Update_account
+    // }
   ]
 })
 

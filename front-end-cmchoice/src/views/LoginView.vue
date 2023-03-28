@@ -44,7 +44,7 @@ import Login from '../components/Login.vue'
         height: 630px;
     }
     .vector .img_bette{
-        width: 70%;
+        /* width: 70%; */
         position: relative;
         top: 24%;
         left: 8%;
@@ -69,7 +69,7 @@ import Login from '../components/Login.vue'
     form{
         display: flex;
         flex-direction: column;
-        gap: 13px;
+        gap: 15px;
         justify-content: center;
         align-items: center;
         flex-direction: column;
@@ -83,8 +83,36 @@ import Login from '../components/Login.vue'
       position: relative;
       display: flex;
       width: 100%;
-      border-bottom: 1px solid #000000;
+      /* border-bottom: 1px solid blue; */
       flex: 1;
+
+    }
+
+    input[type=text]{
+      border-bottom: 1px solid black;
+    }
+
+    input[type=email]{
+      border-bottom: 1px solid black;
+    }
+
+    input[type=password]{
+      border-bottom: 1px solid ;
+    }
+
+    
+
+    input[type=tel]{
+      border-bottom: 1px solid black;
+    }
+
+    #producteur{
+      border-bottom: 1px solid black;
+    }
+
+
+    .form-group.test{
+      border-bottom: red;
     }
     span{
       position: absolute;
@@ -94,15 +122,16 @@ import Login from '../components/Login.vue'
     .form-group > span, .form-field{
       border-radius: 0;
     }
-    .form-group:hover{
+    /* .form-group:hover{
       border-bottom: 1px solid #30df79;
-    }
+    } */
     input{
       border: none;
       padding: 3px 0  0 40px;
       font-size: 1rem;
       outline: none;
       flex: 1;
+      font-size: 1rem;
     }
     input::placeholder{
       opacity: 0.5;
@@ -131,14 +160,23 @@ import Login from '../components/Login.vue'
       opacity: 1;
       cursor: pointer;
     }
-    @media screen and (min-width: 920) and (max-width: 1444){
-        .container{
-            margin: 60px 0;
-        }
-        form{
-            width: 40%;
-            padding: 20px;
-        }
+    @media screen and (max-width: 1800){
+      .container{
+          margin: 60px 0;
+      }
+      form{
+          width: 40%;
+          padding: 20px;
+      }
+      .vector{
+        flex: 1;
+        grid-area: vector;
+        background-image: url(../assets/Vecto.png);
+        background-size: contain ;
+        background-repeat: no-repeat;
+        width: 100px;
+        height: 130px;
+      }
     }
 
     @media screen and (max-width: 885px) {
@@ -157,7 +195,7 @@ import Login from '../components/Login.vue'
         form{
             width: 60%;
             box-shadow: 0 4px 5rem rgba(220, 252, 223, 0.3);
-            gap: 8px;
+            gap: 12px;
         }
         .container{
             margin: 50px 0;
