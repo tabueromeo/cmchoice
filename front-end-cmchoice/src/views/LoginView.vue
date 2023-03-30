@@ -85,8 +85,36 @@ import Login from '../components/Login.vue'
       position: relative;
       display: flex;
       width: 100%;
-      border-bottom: 1px solid #000000;
+      /* border-bottom: 1px solid blue; */
       flex: 1;
+
+    }
+
+    input[type=text]{
+      border-bottom: 1px solid black;
+    }
+
+    input[type=email]{
+      border-bottom: 1px solid black;
+    }
+
+    input[type=password]{
+      border-bottom: 1px solid ;
+    }
+
+    
+
+    input[type=tel]{
+      border-bottom: 1px solid black;
+    }
+
+    #producteur{
+      border-bottom: 1px solid black;
+    }
+
+
+    .form-group.test{
+      border-bottom: red;
     }
     span{
       position: absolute;
@@ -96,9 +124,9 @@ import Login from '../components/Login.vue'
     .form-group > span, .form-field{
       border-radius: 0;
     }
-    .form-group:hover{
+    /* .form-group:hover{
       border-bottom: 1px solid #30df79;
-    }
+    } */
     input{
       border: none;
       padding: 3px 0  0 40px;
