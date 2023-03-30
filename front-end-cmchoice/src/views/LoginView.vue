@@ -25,9 +25,10 @@ import Login from '../components/Login.vue'
 <style>
     *{
         font-family: 'Libre Franklin';
+        padding: 0;
+        margin: 0;
     }
     .container-fluid{
-        /* margin: 0 40px; */
         background: #FFFFFF;
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -41,13 +42,14 @@ import Login from '../components/Login.vue'
         background-size: contain ;
         background-repeat: no-repeat;
         width: 100%;
-        height: 630px;
+        height: 635px;
+        
     }
     .vector .img_bette{
-        /* width: 70%; */
         position: relative;
-        top: 24%;
-        left: 8%;
+        top: 20%;
+        left: 5%;
+        width: 70%;
     }
     h3{
         text-transform: uppercase;
@@ -132,55 +134,46 @@ import Login from '../components/Login.vue'
       opacity: 1;
       cursor: pointer;
     }
-    @media screen and (max-width: 1800){
-      .container{
-          margin: 60px 0;
-      }
-      form{
-          width: 40%;
-          padding: 20px;
-      }
+    
+    @media screen and (min-width: 900) and (max-width: 1700){
       .vector{
-        flex: 1;
-        grid-area: vector;
-        background-image: url(../assets/Vecto.png);
-        background-size: contain ;
-        background-repeat: no-repeat;
-        width: 100px;
-        height: 130px;
+        height: 100%;
+      }
+      .img_bette{
+        /* width: 100%; */
       }
     }
 
     @media screen and (max-width: 885px) {
-        .container-fluid{
-            grid-template-columns: 1fr;
-            grid-template-rows: 1fr;
-            grid-template-areas: 'vector';
-            width: 95%;
-            height: 615px;
-            box-shadow: none;
-            overflow-y: auto;
-        }
-        .vector{
-            display: none;
-        }
-        form{
-            width: 60%;
-            box-shadow: 0 4px 5rem rgba(220, 252, 223, 0.3);
-            gap: 12px;
-        }
-        .container{
-            margin: 50px 0;
-        }
-        .form-check{
-            margin: 10px 0 25px 0;
-        }
+      .container-fluid{
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr;
+        grid-template-areas: 'vector';
+        width: 95%;
+        height: 615px;
+        box-shadow: none;
+        overflow-y: auto;
+      }
+      .vector{
+        display: none;
+      }
+      form{
+        width: 60%;
+        box-shadow: 0 4px 5rem rgba(220, 252, 223, 0.3);
+        gap: 12px;
+      }
+      .container{
+        margin: 50px 0;
+      }
+      .form-check{
+        margin: 10px 0 25px 0;
+      }
     }
     
     @media screen and (max-width: 500px){
-        .container{
-            margin: 10px 0;
-        }
+      .container{
+        margin: 10px 0;
+      }
     }
 
 

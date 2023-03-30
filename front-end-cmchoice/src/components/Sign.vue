@@ -88,6 +88,7 @@
     border: none;
   }
   
+  
   @media screen and (max-width: 685px){
     form{
         width: 60%;
