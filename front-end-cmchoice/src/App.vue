@@ -6,7 +6,10 @@ import PanierView from './views/PanierView.vue'
 
 <template>
      <header>
-       <RouterLink to="/Cart">CART</RouterLink>
+       <div class="router-link">
+         <RouterLink to="/Cart">CART2</RouterLink>
+         <RouterLink to="/Home/AddProduct">ADD PRODUCT</RouterLink>
+       </div>
      </header>
    <router-view ></router-view>
 
@@ -42,65 +45,8 @@ export default {
 
 
 <style scoped>
-/* header {
-  line-height: 1.5;
-  max-height: 100vh;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-nav {
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
-}
-
-nav a.router-link-exact-active {
-  color: var(--color-text);
-}
-
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
-
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-  border: 0;
-}
-
-@media (min-width: 1024px) {
-  header {
+  .router-link{
     display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
+    gap: 15px;
   }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
-} */
 </style>

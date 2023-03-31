@@ -100,7 +100,7 @@
                   </div>
                   <!-- SHOPPING CART NAVIGATION-->
                   <div class="bg-light px-4 py-3">
-                    <div class="shopping-cart-navigation flex row jcsb ">
+                    <div class="shopping-cart-navigation  row  ">
                           <div class="ContinueShop"><i class="fas fa-long-arrow-alt-left"></i>  Continue shopping</div>
                           <RouterLink to="/Cart/Checkout">
                             <div class="proceed">Procceed to checkout  <i class="fas fa-long-arrow-alt-right"></i></div>
@@ -674,15 +674,25 @@ td p {
 }
 
 /* SHOPPING CART NAVIGATION */
+.shopping-cart-navigation{
+    justify-content: space-between;
+    display: flex;
+  }
 .ContinueShop {
   text-align: left !important;
   margin-bottom: 0 !important;
   font-size: 0.875rem;
   text-decoration: underline;
   cursor: pointer;
+  flex: 3;
 }
-
+a[href="/Cart/Checkout"] {
+  flex: 1;
+  display: flex;
+  flex-wrap: nowrap;
+}
 .proceed {
+  min-width: 173px;
   text-align: right !important;
   font-size: 0.875rem;
   border: 1px solid black;
@@ -779,6 +789,9 @@ a[href="/Cart/Checkout"]{
     justify-content: center;
     align-items: center;
   }
+  ul li.text-dark.p-r-5 {
+ padding-right: 0px;
+}
   .cart-section-container .cart-liste ul{
     padding: 0;
   }
