@@ -10,7 +10,7 @@ import Login from '../components/Login.vue'
         
         <div class="vector">
             <!-- <img src="../assets/Vector.svg" alt="vecteur" class="img_bette"> -->
-            <img src="../assets/betterave.svg" alt="vecteur" class="img_bette">
+            <img src="../assets/carotte.png" alt="vecteur" class="img_carot">
         </div>
         <div>
             <Sign/>
@@ -45,15 +45,17 @@ import Login from '../components/Login.vue'
         height: 635px;
         
     }
-    .vector .img_bette{
+    .vector .img_carot{
         position: relative;
         top: 20%;
         left: 5%;
-        width: 70%;
+        width: 90%;
+        transform: matrix(-0.94, 0.35, 0.35, 0.94, 0, 0);
     }
     h3{
         text-transform: uppercase;
         font-weight: 700;
+        margin: 20px 0;
     }
 
     .container{
@@ -71,7 +73,7 @@ import Login from '../components/Login.vue'
     form{
         display: flex;
         flex-direction: column;
-        gap: 15px;
+        gap: 10px;
         justify-content: center;
         align-items: center;
         flex-direction: column;
@@ -85,7 +87,6 @@ import Login from '../components/Login.vue'
       position: relative;
       display: flex;
       width: 100%;
-      /* border-bottom: 1px solid blue; */
       flex: 1;
 
     }
@@ -129,7 +130,7 @@ import Login from '../components/Login.vue'
     } */
     input{
       border: none;
-      padding: 3px 0  0 40px;
+      padding: 3px 0  0 5px;
       font-size: 1rem;
       outline: none;
       flex: 1;
@@ -156,7 +157,7 @@ import Login from '../components/Login.vue'
       border-radius: 50px;
       text-transform: uppercase;
       width: 100%;
-      opacity: 0.6;
+      opacity: 0.85;
     }
     .form-btn button:hover{
       opacity: 1;
@@ -196,11 +197,17 @@ import Login from '../components/Login.vue'
       .form-check{
         margin: 10px 0 25px 0;
       }
+      .input{
+        font-size: .9rem;
+      }
     }
     
     @media screen and (max-width: 500px){
       .container{
         margin: 10px 0;
+      }
+      .input{
+        font-size: .8rem;
       }
     }
 
