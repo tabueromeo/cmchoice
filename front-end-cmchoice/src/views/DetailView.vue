@@ -7,9 +7,9 @@
             <div class="row mb-5">
                 <div class="col-lg-6">
                     <!-- PRODUCT SLIDER-->
-                    <div class="row m-sm-0">
-                        <div id="CarousselDemo" class="carousel slide" data-bs-ride="false">
-                            <div class="carousel-indicators ">
+                    <!-- <div class="row m-sm-0"> -->
+                        <div id="CarousselDemo" class="carousel  d-flex flex-column-reverse flex-md-row slide" data-bs-ride="false">
+                            <div class="carousel-indicators flex-md-column ">
                                 <button data-bs-target="#CarousselDemo" data-bs-slide-to="0" class="active thumbnail">
                                     <img src="/img/product-5.jpg" class="d-block h-100 w-100"  alt="">
                                 </button>
@@ -39,7 +39,7 @@
                             </div>
                             
                         </div>
-                    </div>
+                    <!-- </div> -->
                 </div>
                 <!-- PRODUCT DETAILS-->
                 <div class="col-lg-6">
@@ -169,15 +169,15 @@ export default {
 
 <style scoped>
     .carousel{
-      display: flex;
+      /* display: flex; */
       gap: 20px;
     }
     .carousel .carousel-indicators {
     margin: 0;
     padding: 0;
     height: 100%;
-    flex-direction: column;
-    justify-content: start;
+    /* flex-direction: column; */
+    /* justify-content: start; */
     gap: 16px;
     position: unset;
 }
