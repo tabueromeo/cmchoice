@@ -44,7 +44,7 @@
                   <div class="item">
                       <div class="item-details">
                           <div class="picture">
-                              <img src="../assets/img/members/terra_rogner.jpg" alt="terra vidhal">
+                              <img src="src/assets/members/terra_rogner.jpg" alt="terra vidhal">
                           </div>
                           <div class="name-job">
                               <div class="name">
@@ -70,7 +70,7 @@
                   <div class="item">
                       <div class="item-details">
                           <div class="picture">
-                              <img src="../assets/img/members/photo_5821390762124885643_x.jpg" alt="terra vidhal">
+                              <img src="src/assets/members/photo_5821390762124885643_x.jpg" alt="terra vidhal">
                           </div>
                           <div class="name-job">
                               <div class="name">
@@ -96,7 +96,7 @@
                   <div class="item">
                       <div class="item-details">
                           <div class="picture">
-                              <img src="../assets/img/members/felicité_rogner.jpg" alt="terra vidhal">
+                              <img src="src/assets/members/felicité_rogner.jpg" alt="terra vidhal">
                           </div>
                           <div class="name-job">
                               <div class="name">
@@ -122,7 +122,7 @@
                   <div class="item">
                       <div class="item-details">
                           <div class="picture">
-                              <img src="../assets/img/members/corine_rogner.jpg" alt="terra vidhal">
+                              <img src="src/assets/members/corine_rogner.jpg" alt="terra vidhal">
                           </div>
                           <div class="name-job">
                               <div class="name">
@@ -148,7 +148,7 @@
                   <div class="item">
                       <div class="item-details">
                           <div class="picture">
-                              <img src="../assets/img/members/129814121_180606747078897_5842682717728196140_n.jpg" alt="terra vidhal">
+                              <img src="src/assets/members/terra_rogner.jpg" alt="terra vidhal">
                           </div>
                           <div class="name-job">
                               <div class="name">
