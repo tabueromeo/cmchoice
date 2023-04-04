@@ -160,7 +160,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
   :root {
 
   /* COLOR */
@@ -213,6 +213,22 @@ body {
   line-height: var(--bs-body-line-height);
   color: var(--bs-body-color);
   text-align: var(--bs-body-text-align);
+}
+
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+  margin-top: 0;
+ /*margin-bottom: .5rem; */
+  margin: 25px 0;
+  font-weight: bold;
+  line-height: 1.2;
+  color: var(--bs-heading-color,inherit);
+}
+.h5, h5 {
+  font-size: 1.25rem;
+}
+
+p {
+  margin: 14px 0;
 }
 
 .bg-light {

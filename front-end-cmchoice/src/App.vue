@@ -9,6 +9,7 @@ import PanierView from './views/PanierView.vue'
        <div class="router-link">
          <RouterLink to="/Cart">CART2</RouterLink>
          <RouterLink to="/Home/AddProduct">ADD PRODUCT</RouterLink>
+         <RouterLink to="/Home/About">ABOUT</RouterLink>
        </div>
      </header>
    <router-view ></router-view>
