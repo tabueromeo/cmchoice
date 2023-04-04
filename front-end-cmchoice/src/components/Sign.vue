@@ -8,12 +8,10 @@
       </div>
       <small>{{ messageUserName.text }}</small>
 
-
       <div class="form-group">
         <input type="email" placeholder="email" id="mail_img" :class="{'form-field' : true, 'isError': !emailmsg.isValidate&&emailmsg.text, 'isValidate': emailmsg.isValidate}" v-model="email" @change="handleEmail">
       </div>
       <small class="valid-feedback">{{emailmsg.text}}</small> 
-
 
       <div class="form-group">
         <input type="password" placeholder="Mot de passe" :class="{'form-field pwd_img': true, 'isError': !paswordMessage.isValidate&&paswordMessage.text, 'isValidate': paswordMessage.isValidate}" id="pass" v-model="password" @change="handlePassword">
@@ -25,12 +23,10 @@
       </div>
       <small>{{ messageConfirmerMdp.text }}</small>
 
-
       <div class="form-group ">
         <input type="tel" placeholder="Numéro" :class="{'form-field tel_img': true, 'isError': !messageConatct.isValidate&&messageConatct, 'isValidate': messageConatct.isValidate}"  pattern="[6]{1}[5|6|7|8|9]{1}[0-9]{7}" v-model="contact" @change="handleContact ">
       </div>
       <small>{{ messageConatct }}</small>
-
 
       <!-- <div class="txt"> -->
         <div class="form-group " v-if="role==='producteur'">
@@ -45,7 +41,7 @@
             <option value="producteur">Morale</option>
           </select>
         </div>
-      <!-- </div> -->
+      
       <div class="form-check">
         <div class="ckeck">
           <input v-model="role"  type="radio" id="userChoice1" name="user" value="client" checked>
@@ -162,23 +158,15 @@
 
 </script>
 
-<style>
-  /* #user_image{
-    background: url(../assets/User.svg) no-repeat;
-    background-position-x: right;
-  } */
-  /* #mail_img{
-    background: url(../assets/SecuredL.svg) no-repeat;
-    background-position-x: right;
-  } */
+<style scooped>
+  .container{
+    margin-top: 140px  !important;
+  }
   .pwd_img{
     background: url(../assets/Invisible.svg) no-repeat;
     background-position-x: right;
   }
-  /* .tel_img{
-    background: url(../assets/Phone.svg) no-repeat;
-    background-position-x: right;
-  } */
+  
   .txt{
     padding: 0 15px ;
   }
@@ -207,6 +195,7 @@
     }
     .container{
       height: 100%;
+      margin-top: 5px;
     }
     .form-check{
       margin: 10px 0 25px 0;
@@ -225,6 +214,9 @@
       border-bottom: 1px solid #6FCF97 !important;
     }
   @media screen and (max-width: 485px){
+    .container{
+      margin-top: 5px !important;
+    }
     select{
       padding: 3px 80px;
     }

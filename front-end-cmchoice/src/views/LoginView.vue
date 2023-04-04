@@ -1,61 +1,53 @@
 <script setup>
 import Sign from '../components/Sign.vue';
-import Login from '../components/Login.vue'
+import Singin from '../components/SignIn.vue'
 
     // components: { Sign}
 </script>
 
 <template>
     <div class="container-fluid">
-        
-        <div class="vector">
-            <!-- <img src="../assets/Vector.svg" alt="vecteur" class="img_bette"> -->
-            <img src="../assets/carotte.png" alt="vecteur" class="img_carot">
-        </div>
-        <div>
-            <Sign/>
-            <!-- <Login /> -->
-        </div>
+      <div class="vector">
+        <img src="../assets/carotte.png" alt="vecteur" class="img_carot">
+        <img src="../assets/Vecto.png" alt="" class="img_vecto">
+      </div>
+      <div class="connect">
+        <Sign/>
+        <!-- <Singin/> -->
+      </div>
     </div>
    
-    
 </template>
 
 
-<style>
+<style scooped>
     *{
-        font-family: 'Libre Franklin';
-        padding: 0;
-        margin: 0;
+      font-family: 'Libre Franklin';
+      padding: 0;
+      margin: 0;
     }
     .container-fluid{
-        background: #FFFFFF;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: 1fr;
-        grid-template-areas: 'vector' 'form';
+      background: #FFFFFF;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr;
+      grid-template-areas: 'vector' 'form';
     }
-    .vector{
-        flex: 1;
-        grid-area: vector;
-        background-image: url(../assets/Vecto.png);
-        background-size: contain ;
-        background-repeat: no-repeat;
-        width: 100%;
-        height: 635px;
-        
+    .img_carot{
+      top: 15%;
+      left: 5%;
+      width: 50%;
+      transform: matrix(-0.94, 0.35, 0.35, 0.94, 0, 0);
+      position: absolute;
     }
-    .vector .img_carot{
-        position: relative;
-        top: 20%;
-        left: 5%;
-        width: 90%;
-        transform: matrix(-0.94, 0.35, 0.35, 0.94, 0, 0);
+    .img_vecto{
+      z-index: 1;
+      width: 78.6%;
     }
     h3{
-        text-transform: uppercase;
-        font-weight: 700;
-        margin: 20px 0;
+      text-transform: uppercase;
+      font-weight: 700;
+      margin: 20px 0;
     }
 
     .container{
@@ -71,46 +63,43 @@ import Login from '../components/Login.vue'
     }
   
     form{
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        width: 50%;
-        padding: 10px 40px;
-        border-radius: 2px;   
-        box-shadow: 0 4px 5rem rgba(220, 252, 223, 0.6);
-        grid-area: form;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      width: 50%;
+      padding: 10px 40px;
+      border-radius: 2px;   
+      box-shadow: 0 4px 5rem rgba(220, 252, 223, 0.6);
+      grid-area: form;
     }
     .form-group{
       position: relative;
       display: flex;
       width: 100%;
       flex: 1;
-
     }
 
     input[type=text]{
-      border-bottom: 1px solid black;
+      border-bottom: 1px solid rgba(44, 43, 43, 0.5);
     }
 
     input[type=email]{
-      border-bottom: 1px solid black;
+      border-bottom: 1px solid rgba(44, 43, 43, 0.5);
     }
 
     input[type=password]{
-      border-bottom: 1px solid ;
+      border-bottom: 1px solid rgba(44, 43, 43, 0.5);
     }
 
-    
-
     input[type=tel]{
-      border-bottom: 1px solid black;
+      border-bottom: 1px solid rgba(44, 43, 43, 0.5);
     }
 
     #producteur{
-      border-bottom: 1px solid black;
+      border-bottom: 1px solid rgba(44, 43, 43, 0.5);
     }
 
 
@@ -125,9 +114,6 @@ import Login from '../components/Login.vue'
     .form-group > span, .form-field{
       border-radius: 0;
     }
-    /* .form-group:hover{
-      border-bottom: 1px solid #30df79;
-    } */
     input{
       border: none;
       padding: 3px 0  0 5px;
@@ -152,24 +138,21 @@ import Login from '../components/Login.vue'
     .form-btn button{
       border: none;
       padding: 10px;
-      background-color: #6FCF97;
+      background-color: #1aca63;
       color :white;
       border-radius: 50px;
       text-transform: uppercase;
       width: 100%;
-      opacity: 0.85;
+      opacity: 0.9;
     }
     .form-btn button:hover{
       opacity: 1;
       cursor: pointer;
     }
-    
-    @media screen and (min-width: 900) and (max-width: 1700){
-      .vector{
-        height: 100%;
-      }
-      .img_bette{
-        /* width: 100%; */
+
+    @media screen and (max-width: 1200px) {
+      form{
+        gap: 6.4px;
       }
     }
 
@@ -189,7 +172,7 @@ import Login from '../components/Login.vue'
       form{
         width: 60%;
         box-shadow: 0 4px 5rem rgba(220, 252, 223, 0.3);
-        gap: 12px;
+        gap: 9px;
       }
       .container{
         margin: 50px 0;
