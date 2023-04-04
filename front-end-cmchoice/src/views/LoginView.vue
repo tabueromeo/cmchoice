@@ -1,6 +1,6 @@
 <script setup>
 import Sign from '../components/Sign.vue';
-import Singin from '../components/SignIn.vue'
+import Singin from '../components/Login.vue'
 
     // components: { Sign}
 </script>
@@ -12,8 +12,8 @@ import Singin from '../components/SignIn.vue'
         <img src="../assets/Vecto.png" alt="" class="img_vecto">
       </div>
       <div class="connect">
-        <Sign/>
-        <!-- <Singin/> -->
+        <!-- <Sign/> -->
+        <Singin/>
       </div>
     </div>
    
