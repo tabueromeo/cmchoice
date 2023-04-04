@@ -4,9 +4,7 @@
 
 <template>
   <div class="about">
-    <div>
-      <ProductCard/>
-    </div>
+    
   </div>
 </template>
 

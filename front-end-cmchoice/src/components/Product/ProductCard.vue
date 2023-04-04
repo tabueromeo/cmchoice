@@ -95,7 +95,7 @@
     
   </script>
   
-  <style>
+  <style scoped>
     .product{
       margin: 24px 24px;
     }

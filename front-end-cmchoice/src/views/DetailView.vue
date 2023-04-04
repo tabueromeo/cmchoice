@@ -167,7 +167,7 @@ export default {
 
 </script>
 
-<style>
+<style scoped>
     .carousel{
       display: flex;
       gap: 20px;
