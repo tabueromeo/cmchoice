@@ -11,7 +11,7 @@
         <div class="container px-lg-3">
           <nav class="navbar  navbar-expand-lg navbar-light py-md-3 px-lg-0">
             <div class="navbar-brand text-center d-flex align-items-center">
-                <i class="fa-sharp fa-solid me-2 fa-bars text-24 text-black d-lg-none" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample"></i>
+                <i class="fa-sharp fa-solid me-3 fa-bars text-24 text-black d-lg-none" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample"></i>
                 <div class="offcanvas offcanvas-start w-sidebar color-black d-lg-none" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
                     <div class="offcanvas-body d-flex flex-column   overflow-hidden">
                         <ul class="navbar-nav me-auto w-100 mb-5">
@@ -158,7 +158,7 @@
                 </li>
               </ul>
             </div>
-            <RouterLink to="/panier" class="nav-link d-md-none " v-if="isAuthenfied">
+            <RouterLink to="/panier" class="nav-link d-lg-none " v-if="isAuthenfied">
                 <i class="fa-solid fa-cart-shopping  text-gray text-24"></i>
             </RouterLink>
           </nav>

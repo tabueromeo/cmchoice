@@ -32,7 +32,7 @@
 </script>
 
 <template>
-    <section class="pt-5">
+    <section class="pt-5 ">
         <header class="text-center">
         <p class="small text-muted small text-uppercase mb-1">le meilleur de nos artisants </p>
         <h2 class="h5 text-uppercase mb-4">Parcourir nos categories</h2>
