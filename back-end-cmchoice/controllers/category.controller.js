@@ -27,7 +27,7 @@ let CategoryController = {
     },
     getCategory: async(req,res) => {
         try {
-            let categoryFind = await CategoryModel.findById(req.params.id)
+            let categoryFind = await CategoryModel.findById(req.params.id).populate('subcategories')
             if (categoryFind) {
                   res.status(200).json(categoryFind)
               } else {

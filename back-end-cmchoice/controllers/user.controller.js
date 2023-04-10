@@ -1,4 +1,5 @@
 let UserModel = require('../models/user.model')
+
 const bcrypt = require('bcrypt');
 
 let UserController = {

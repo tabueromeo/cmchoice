@@ -11,6 +11,7 @@ app.use(require("./routes/user"));
 app.use(require("./routes/auth"));
 app.use(require("./routes/category"));
 app.use(require("./routes/subCategory"));
+app.use(require("./routes/shoppingCart"));
 
 // get driver connection
 const dbo = require("./db/conn");
