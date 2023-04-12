@@ -17,11 +17,10 @@
             <a href="#">Mot de passe oublié ?</a>
         </div>
         <div class="form-btn">
-        <button>Se connecter</button>
-      </div><br><br>
-      <div class="btn_create">
-        <a href="#">Créer un compte</a>
-      </div>
+          <button>Se connecter</button> 
+          <br><br>
+          <button>Créer un compte</button>
+        </div><br><br>
       
     </form>
   </div>
@@ -35,7 +34,7 @@ export default {
 
 <style scoped>
 .container{
-  margin-top: 150px;
+  margin-top: 80px;
 }
   a{
     text-decoration: none;
@@ -43,10 +42,10 @@ export default {
   }
   .pwd_img{
     background: url(../assets/Invisible.svg) no-repeat;
-    background-position-x: right;
+    background-position: center right;
   }
   form{
-    padding: 10px 50px;
+    padding: 10px 30px;
     gap: 25px;
   }
   .form-group a{
@@ -54,17 +53,13 @@ export default {
     right: 10px;
     font-size: .8rem;
     color: #059c44;
-  }
-  .account a{
-    position: absolute;
-    left: 95px;
-    font-size: .8rem;
+    /* padding: 0; */
   }
   
 
   @media screen and (max-width: 1200px) {
     .container{
-      margin-top: 100px;
+      margin-top: 70px;
     }
     form{
       gap: 10px;
@@ -72,7 +67,7 @@ export default {
   }
 
   @media screen and (max-width: 500px){
-    .form-group a, .account a{
+    .form-group a{
       font-size: .5rem;
     }
   }

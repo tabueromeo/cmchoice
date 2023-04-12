@@ -1,21 +1,17 @@
 <script setup>
 import Sign from '../components/Sign.vue';
-import Singin from '../components/Login.vue'
+import Login from '../components/Login.vue'
 
     // components: { Sign}
 </script>
 
 <template>
-    <div class="container-fluid">
-      <div class="vector">
-        <img src="../assets/carotte.png" alt="vecteur" class="img_carot">
-        <img src="../assets/Vecto.png" alt="" class="img_vecto">
-      </div>
+    <!-- <div class="container-fluid"> -->
       <div class="connect">
         <!-- <Sign/> -->
-        <Singin/>
+        <Login/>
       </div>
-    </div>
+    <!-- </div> -->
    
 </template>
 
@@ -26,28 +22,13 @@ import Singin from '../components/Login.vue'
       padding: 0;
       margin: 0;
     }
-    .container-fluid{
-      background: #FFFFFF;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: 1fr;
-      grid-template-areas: 'vector' 'form';
-    }
-    .img_carot{
-      top: 15%;
-      left: 5%;
-      width: 50%;
-      transform: matrix(-0.94, 0.35, 0.35, 0.94, 0, 0);
-      position: absolute;
-    }
-    .img_vecto{
-      z-index: 1;
-      width: 78.6%;
-    }
     h3{
       text-transform: uppercase;
       font-weight: 700;
       margin: 20px 0;
+    }
+    .connect{
+      margin: 180px 0;
     }
 
     .container{
@@ -55,7 +36,7 @@ import Singin from '../components/Login.vue'
       justify-content: center;
       flex-direction: column;
       align-items: center;
-      margin: 60px auto;
+      margin: 10px auto;
     }
 
     form .form-group:not(:last-child){
@@ -65,11 +46,11 @@ import Singin from '../components/Login.vue'
     form{
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 8px;
       justify-content: center;
       align-items: center;
       flex-direction: column;
-      width: 50%;
+      width: 35%;
       padding: 10px 40px;
       border-radius: 2px;   
       box-shadow: 0 4px 5rem rgba(220, 252, 223, 0.6);
@@ -82,48 +63,25 @@ import Singin from '../components/Login.vue'
       flex: 1;
     }
 
-    input[type=text]{
-      border-bottom: 1px solid rgba(44, 43, 43, 0.5);
-    }
-
-    input[type=email]{
-      border-bottom: 1px solid rgba(44, 43, 43, 0.5);
-    }
-
-    input[type=password]{
-      border-bottom: 1px solid rgba(44, 43, 43, 0.5);
-    }
-
-    input[type=tel]{
-      border-bottom: 1px solid rgba(44, 43, 43, 0.5);
-    }
-
     #producteur{
-      border-bottom: 1px solid rgba(44, 43, 43, 0.5);
-    }
+      border-radius: 5px;
+    } 
 
 
     .form-group.test{
       border-bottom: red;
     }
-    span{
-      position: absolute;
-      left: 0;
-      top: -1px;
-    }
-    .form-group > span, .form-field{
+    /* .form-group > span, .form-field{
       border-radius: 0;
-    }
+    } */
     input{
-      border: none;
-      padding: 3px 0  0 5px;
+      border: 1px solid #c9c9c9;
+      padding: .6rem;
       font-size: 1rem;
       outline: none;
       flex: 1;
       font-size: 1rem;
-    }
-    input::placeholder{
-      opacity: 0.5;
+      color: #212529;
     }
     .form-check{
       display: flex;
@@ -140,7 +98,6 @@ import Singin from '../components/Login.vue'
       padding: 10px;
       background-color: #1aca63;
       color :white;
-      border-radius: 50px;
       text-transform: uppercase;
       width: 100%;
       opacity: 0.9;
@@ -151,12 +108,21 @@ import Singin from '../components/Login.vue'
     }
 
     @media screen and (max-width: 1200px) {
+      .connect{
+        margin: 150px 0;
+      }
       form{
-        gap: 6.4px;
+          gap: 6px;
+        }
+      input{
+        font-size: .9rem;
       }
     }
 
     @media screen and (max-width: 885px) {
+      .connect{
+        margin: 100px 0;
+      }
       .container-fluid{
         grid-template-columns: 1fr;
         grid-template-rows: 1fr;
@@ -172,7 +138,7 @@ import Singin from '../components/Login.vue'
       form{
         width: 60%;
         box-shadow: 0 4px 5rem rgba(220, 252, 223, 0.3);
-        gap: 9px;
+        gap: 5px;
       }
       .container{
         margin: 50px 0;
@@ -186,11 +152,15 @@ import Singin from '../components/Login.vue'
     }
     
     @media screen and (max-width: 500px){
+      
+    .connect{
+      margin: 20px 0;
+    }
       .container{
         margin: 10px 0;
       }
       .input{
-        font-size: .8rem;
+        font-size: .7rem;
       }
     }
 

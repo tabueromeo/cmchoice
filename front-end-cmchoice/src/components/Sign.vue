@@ -9,7 +9,7 @@
       <small>{{ messageUserName.text }}</small>
 
       <div class="form-group">
-        <input type="email" placeholder="email" id="mail_img" :class="{'form-field' : true, 'isError': !emailmsg.isValidate&&emailmsg.text, 'isValidate': emailmsg.isValidate}" v-model="email" @change="handleEmail">
+        <input type="email" placeholder="Adresse email" id="mail_img" :class="{'form-field' : true, 'isError': !emailmsg.isValidate&&emailmsg.text, 'isValidate': emailmsg.isValidate}" v-model="email" @change="handleEmail">
       </div>
       <small class="valid-feedback">{{emailmsg.text}}</small> 
 
@@ -24,7 +24,7 @@
       <small>{{ messageConfirmerMdp.text }}</small>
 
       <div class="form-group ">
-        <input type="tel" placeholder="Numéro" :class="{'form-field tel_img': true, 'isError': !messageConatct.isValidate&&messageConatct, 'isValidate': messageConatct.isValidate}"  pattern="[6]{1}[5|6|7|8|9]{1}[0-9]{7}" v-model="contact" @change="handleContact ">
+        <input type="tel" placeholder="Téléphone" :class="{'form-field tel_img': true, 'isError': !messageConatct.isValidate&&messageConatct, 'isValidate': messageConatct.isValidate}"  pattern="[6]{1}[5|6|7|8|9]{1}[0-9]{7}" v-model="contact" @change="handleContact ">
       </div>
       <small>{{ messageConatct }}</small>
 
@@ -44,11 +44,11 @@
       
       <div class="form-check">
         <div class="ckeck">
-          <input v-model="role"  type="radio" id="userChoice1" name="user" value="client" checked>
+          <input v-model="role"  type="checkbox" id="userChoice1" name="user" value="client" checked>
           <label for="client">Client</label>
         </div>
         <div class="ckeck">
-          <input v-model="role" type="radio" id="userChoice2" name="user" value="producteur" @click="fUn">
+          <input v-model="role" type="checkbox" id="userChoice2" name="user" value="producteur" @click="fUn">
           <label for="userChoice2">Vendeur</label>
         </div>
       </div>
@@ -160,24 +160,22 @@
 
 <style scooped>
   .container{
-    margin-top: 140px  !important;
+    margin-top: 80px  !important;
   }
   .pwd_img{
     background: url(../assets/Invisible.svg) no-repeat;
-    background-position-x: right;
+    background-position: center right;
   }
   
   .txt{
-    padding: 0 15px ;
+    padding: 8px 7px ;
   }
   select{
     width: 100%;
-    padding: 3px 15px 0;
-    border: none;
+    border: 1px solid #c9c9c9;
+    padding: .4rem;
     font-size: .9rem;
-  }
-  select:focus{
-    border: none;
+    color: #555657;
   }
 
   small{
@@ -208,18 +206,18 @@
     }
   }
   .isError{
-      border-bottom: 1px solid red !important;
+      border: 1px solid red !important;
     }
   .isValidate{
-      border-bottom: 1px solid #6FCF97 !important;
+      border: 1px solid #6FCF97 !important;
     }
   @media screen and (max-width: 485px){
     .container{
       margin-top: 5px !important;
     }
-    select{
+    /* select{
       padding: 3px 80px;
-    }
+    } */
   }
   
 </style>
