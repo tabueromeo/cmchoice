@@ -4,6 +4,9 @@ const express = require("express");
 // We use it to define our routes.
 // The router will be added as a middleware and will take control of requests starting with path /category.
 const categoryRoutes = express.Router();
+
+// import the authentification middleware
+const authMiddleWare = require('../middleWare/authMiddleWare')
  
 // import the category controller
 let CategoryControls = require('../controllers/category.controller');
@@ -12,15 +15,15 @@ let CategoryControls = require('../controllers/category.controller');
 categoryRoutes.route("/category").get(CategoryControls.all);
 
 // This section will help you create a categorys.
-categoryRoutes.route("/category/create").post(CategoryControls.createCategory);
+categoryRoutes.route("/category/create").post(authMiddleWare, CategoryControls.createCategory);
  
 // This section will help you get a single category by id
 categoryRoutes.route("/category/:id").get(CategoryControls.getCategory);
  
 // This section will help you update a category by id.
-categoryRoutes.route("/category/update/:id").put(CategoryControls.updateCategory);
+categoryRoutes.route("/category/update/:id").put(authMiddleWare, CategoryControls.updateCategory);
  
 // This section will help you delete a category
-categoryRoutes.route("/category/delete/:id").delete(CategoryControls.deleteCategory);
+categoryRoutes.route("/category/delete/:id").delete(authMiddleWare, CategoryControls.deleteCategory);
  
 module.exports = categoryRoutes;

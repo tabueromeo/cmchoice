@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-// const bcrypt = require('bcrypt');
 
 let User = new Schema({
     name: {
@@ -41,11 +40,14 @@ let User = new Schema({
     fieldOfActivity: {
         type: String
     },
-    shoopingCart: {type: mongoose.Types.ObjectId, ref: "ShoopingCart"},
-    favorites: {type: mongoose.Types.ObjectId, ref: "Favorite"},
-    sellerProducts: [{type: mongoose.Types.ObjectId, ref: "Product"}]
+    shoopingCart: {type: mongoose.Types.ObjectId, ref: "ShoppingCarts"},
+    favorites: {type: mongoose.Types.ObjectId, ref: "Favorites"},
+    sellerProducts: [{
+        _id: false,
+        product: {type: mongoose.Types.ObjectId, ref: "Products"
+    }}]
 },
 { 
-    timestamps: true 
+    timestamps: true
 });
 module.exports = mongoose.model('users', User);

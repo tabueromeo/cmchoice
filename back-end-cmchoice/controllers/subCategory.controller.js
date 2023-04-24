@@ -5,7 +5,8 @@ let CategoryModel = require('../models/category.model')
 let SubCategoryController = {
 
     createSubCategory: async (req,res) => {
-        const {currentUserRole, categoryId} = req.body
+        const {currentUserRole} = req.user
+        const {categoryId} = req.body
 
         if ( currentUserRole === "admin") {
             const category = await CategoryModel.findById(categoryId)
@@ -49,7 +50,7 @@ let SubCategoryController = {
     },
     updateSubCategory: async(req,res) => {
         const id = req.params.id
-        const {currentUserRole} = req.body
+        const {currentUserRole} = req.user
 
         if ( currentUserRole === "admin") {
             try {
@@ -65,7 +66,7 @@ let SubCategoryController = {
     },
     deleteSubCategory: async(req,res) => {
         const id = req.params.id
-        const {currentUserRole} = req.body
+        const {currentUserRole} = req.user
 
         if ( currentUserRole === "admin") {
             try {

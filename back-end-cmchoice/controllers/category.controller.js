@@ -3,7 +3,7 @@ let CategoryModel = require('../models/category.model')
 let CategoryController = {
 
     createCategory: async (req,res) => {
-        const {currentUserRole} = req.body
+        const {currentUserRole} = req.user
 
         if ( currentUserRole === "admin") {
             try {
@@ -39,7 +39,7 @@ let CategoryController = {
     },
     updateCategory: async(req,res) => {
         const id = req.params.id
-        const {currentUserRole} = req.body
+        const {currentUserRole} = req.user
 
         if ( currentUserRole === "admin") {
             try {
@@ -55,7 +55,7 @@ let CategoryController = {
     },
     deleteCategory: async(req,res) => {
         const id = req.params.id
-        const {currentUserRole} = req.body
+        const {currentUserRole} = req.user
 
         if ( currentUserRole === "admin") {
             try {

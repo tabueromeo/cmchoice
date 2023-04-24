@@ -5,12 +5,17 @@ const bcrypt = require('bcrypt');
 let UserController = {
     
     all: async(req,res) => {
-        UserModel.find()
-        .then(data => {
-          res.json(data)
-          console.log("yaaaaaa");
-        })
-        .catch(error => console.log(error));
+        const {currentUserRole} = req.user
+        if (currentUserRole === "admin") {
+            UserModel.find()
+            .then(data => {
+            res.json(data)
+            console.log("yaaaaaa");
+            })
+            .catch(error => console.log(error));
+        } else {
+            res.status(403).send("Acces Denied! You can do this")
+        }  
     },
     getUser: async(req,res) => {
         try {
@@ -29,7 +34,8 @@ let UserController = {
     },
     updateUser: async(req,res) => {
         const id = req.params.id
-        const {currentUserId, currentUserRole, password} = req.body
+        const {password} = req.body
+        const {currentUserId, currentUserRole} = req.user
 
         if (id === currentUserId || currentUserRole === "admin") {
             try {
@@ -49,7 +55,7 @@ let UserController = {
     },
     deleteUser: async(req,res) => {
         const id = req.params.id
-        const {currentUserId, currentUserRole} = req.body
+        const {currentUserId, currentUserRole} = req.user
 
         if (id === currentUserId || currentUserRole === "admin") {
             try {

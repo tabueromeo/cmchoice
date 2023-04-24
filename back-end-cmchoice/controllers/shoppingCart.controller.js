@@ -3,14 +3,14 @@ let UserModel = require('../models/user.model')
 
 let CartController = {
     createCart: async (req,res) => {
-        const {userId} = req.body
-        if ( userId) {
-            const user = await UserModel.findById(userId)
+        const {currentUserId} = req.user
+        if ( currentUserId) {
+            const user = await UserModel.findById(currentUserId)
             if (user) {
                 try {
-                    let newCart = new CartModel(req.body)
+                    let newCart = new CartModel({userId: currentUserId})
                     const cartCreated = await newCart.save()
-                    await UserModel.findByIdAndUpdate(userId, {"shoopingCart": cartCreated._id}, {new: true})
+                    await UserModel.findByIdAndUpdate(currentUserId, {"shoopingCart": cartCreated._id}, {new: true})
                     res.status(200).json(cartCreated)
                 } catch (error) {
                     res.status(500).json(error)
@@ -24,17 +24,30 @@ let CartController = {
         }
     },
     all: async (req,res) => {
-        CartModel.find()
-        .then(data => {
-          res.json(data)
-        })
-        .catch(error => console.log(error));
+        const {currentUserRole} = req.user
+        if (currentUserRole === "admin") {
+            CartModel.find().populate('products.item')
+            .then(data => {
+              res.json(data)
+            })
+            .catch(error => console.log(error));
+        } else {
+            res.status(403).send("Acces Denied! You cant do this")
+        }
+       
     },
     getShoppingCart: async (req,res) => {
+        const {currentUserId, currentUserRole} = req.user
         try {
             let cartFind = await CartModel.findById(req.params.id)
             if (cartFind) {
-                  res.status(200).json(cartFind)
+                console.log(cartFind);
+                if ( (cartFind.userId == currentUserId) || currentUserRole === "admin") {
+                    await cartFind.populate('products.item')
+                    res.status(200).json(cartFind)
+                } else {
+                    res.status(403).send("Acces Denied! You cant do this")
+                } 
               } else {
                   res.status(404).send("shopping cart doesnt exist")
               }
@@ -44,15 +57,36 @@ let CartController = {
     },
     updateShoppingCart: async (req,res) => {
         const cartId = req.params.id
-        const {userId, currentUserRole} = req.body
+        const {currentUserId, currentUserRole} = req.user
 
         const cartFind = await CartModel.findById(cartId)
 
-        if ( cartFind.userId === userId || currentUserRole === "admin") {
+        if (cartFind) {
+            if ( cartFind.userId == currentUserId || currentUserRole === "admin") {
+                try {
+                    
+                    const updatedCart = await CartModel.findByIdAndUpdate(cartId, req.body, {new: true})
+                    res.status(200).json(updatedCart)
+                } catch (error) {
+                    res.status(500).json(error)
+                }
+            } else {
+                res.status(403).send("Acces Denied! You cant do this")
+            }
+        } else {
+            res.status(404).send("Shopping Cart doent exist")
+        }
+
+       
+    },
+    deleteShoppingCart: async (req,res) => {
+        const id = req.params.id
+        const {currentUserRole} = req.user
+
+        if ( currentUserRole === "admin") {
             try {
-                
-                const updatedCart = await CartModel.findByIdAndUpdate(cartId, req.body, {new: true})
-                res.status(200).json(updatedCart)
+                await CartModel.findByIdAndDelete(id)
+                res.status(200).send("Cart deleted successfully")
             } catch (error) {
                 res.status(500).json(error)
             }

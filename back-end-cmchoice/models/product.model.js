@@ -15,7 +15,7 @@ let Product = new Schema ({
         require: true
     },
     imagesPath: [{
-        type: Number,
+        type: String,
         require: true
     }],
     tags: [{
@@ -29,7 +29,7 @@ let Product = new Schema ({
             message: 'unknow status'
         }
     },
-    sellerId: {type: mongoose.Types.ObjectId, ref: "User"},
+    sellerId: {type: mongoose.Types.ObjectId, ref: "User", require: true},
     subCategory: {type: mongoose.Types.ObjectId, ref: "SubCategory"}
 
 },

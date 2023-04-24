@@ -1,0 +1,447 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "version": "1.0.0", 
+      "title": "CMCHOICE",
+      "description": "CMCHOICE Application API",
+      "contact": {
+        "name": "API Support",
+        "email": "albanfoko@yahoo.fr"
+      }
+    },
+    "servers": [
+        {
+            "url": "http://localhost:5000",
+            "description": "Development server"
+        }
+    ],
+    "components": {
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "scheme": "bearer",
+                "in": "header",
+                "name": "Authorization",
+                "description": "Bearer token to access api endpoints",
+                "bearerFormat": "JWT"
+            }
+        }
+    },
+    "host": "localhost:5000",
+    "basePath": "/",
+    "tags": [
+      {
+        "name": "Auth",
+        "description": "Endpoints for register, login and refresh in the system"
+      },
+      {
+        "name": "Users",
+        "description": "Endpoints for users in the system"
+      }
+    ],
+    "paths": {
+        "/users": {
+          "get": {
+            "security": [{
+                "bearerAuth": []
+            }],
+            "tags": ["Users"],
+            "summary": "Get all users in system",
+            "responses": {
+                "200": {
+                    "description": "OK",
+                    "content": {
+                        "application/json": {
+                        "schema": {
+                            "$ref": "#/definitions/Users"
+                        }
+                        }
+                    }
+                },
+                "401": {
+                    "description": "Unvalid Token",
+                    "content": {
+                        "text/plain": {
+                          "schema": {
+                            "type": "string"
+                          }
+                        }
+                    }
+                },
+                "403": {
+                    "description": "Acces Denied!",
+                    "content": {
+                        "text/plain": {
+                          "schema": {
+                            "type": "string"
+                          }
+                        }
+                    }
+                },
+                "404": {
+                    "description": "Token Not Found",
+                    "content": {
+                        "text/plain": {
+                          "schema": {
+                            "type": "string"
+                          }
+                        }
+                    }
+                }
+            }
+          }
+        },
+        "/user/{id}": {
+            "parameters": [
+              {
+                "name": "id",
+                "in": "path",
+                "required": true,
+                "description": "ID of user that we want to find",
+                "type": "string"
+              }
+            ],
+            "get": {
+                "summary": "Find user with given ID",
+                "tags": ["Users"],
+                "responses": {
+                    "200": {
+                        "description": "User finded",
+                        "content": {
+                            "application/json": {
+                            "schema": {
+                                "$ref": "#/definitions/Users"
+                            }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "User Not Found",
+                        "content": {
+                            "text/plain": {
+                              "schema": {
+                                "type": "string"
+                              }
+                            }
+                        }
+                    }
+                }
+              }
+        },
+        "/user/update/{id}": {
+            "parameters": [
+              {
+                "name": "id",
+                "in": "path",
+                "required": true,
+                "description": "ID of user that we want to update infos",
+                "type": "string"
+              }
+            ],
+            "put": {
+                "security": [{
+                    "bearerAuth": []
+                }],
+                "summary": "Update a user infos",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/definitions/UserUpdated"
+                            }
+                        }
+                    }
+                },
+                "tags": ["Users"],
+                "responses": {
+                    "200": {
+                        "description": "User updated",
+                        "content": {
+                            "application/json": {
+                            "schema": {
+                                "$ref": "#/definitions/UserUpdated"
+                            }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unvalid Token",
+                        "content": {
+                            "text/plain": {
+                              "schema": {
+                                "type": "string"
+                              }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Acces Denied!",
+                        "content": {
+                            "text/plain": {
+                              "schema": {
+                                "type": "string"
+                              }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "User to update or current  User Token Not Found",
+                        "content": {
+                            "text/plain": {
+                              "schema": {
+                                "type": "string"
+                              }
+                            }
+                        }
+                    }
+                }
+              }
+        },
+        "/user/delete/{id}": {
+            "parameters": [
+              {
+                "name": "id",
+                "in": "path",
+                "required": true,
+                "description": "ID of user that we want to update infos",
+                "type": "string"
+              }
+            ],
+            "delete": {
+                "security": [{
+                    "bearerAuth": []
+                }],
+                "summary": "Delete a user",
+                "tags": ["Users"],
+                "responses": {
+                    "200": {
+                        "description": "User deleted",
+                        "content": {
+                            "text/plain": {
+                            "schema": {
+                                "type": "string"
+                            }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unvalid Token",
+                        "content": {
+                            "text/plain": {
+                              "schema": {
+                                "type": "string"
+                              }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Acces Denied!",
+                        "content": {
+                            "text/plain": {
+                              "schema": {
+                                "type": "string"
+                              }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Token Not Found",
+                        "content": {
+                            "text/plain": {
+                              "schema": {
+                                "type": "string"
+                              }
+                            }
+                        }
+                    }
+                }
+              }
+        },
+        "/auth/register": {
+            "post": {
+                "tags": ["Auth"],
+                "summary": "register a new user",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/definitions/UserUpdated"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "headers": {
+                            "set-cookie": {
+                                "description": "Refresh token is render in the response cookie",
+                                "schema": {
+                                  "type": "string"
+                                }
+                            }
+                        },
+                        "schema": {
+                        "$ref": "#/definitions/UserRegisted"
+                        }
+                    },
+                    "409": {
+                        "description": "phone number or email already use",
+                        "content": {
+                            "text/plain": {
+                              "schema": {
+                                "type": "string"
+                              }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "User": {
+            "required": ["password", "_id", "phoneNumber", "role"],
+            "properties": {
+                "_id": {
+                    "type": "string",
+                    "uniqueItems": true
+                },
+                "email": {
+                "type": "string",
+                "uniqueItems": true
+                },
+                "name": {
+                "type": "string"
+                },
+                "phoneNumber": {
+                    "type": "number"
+                },
+                "town": {
+                    "type": "string"
+                },
+                "state": {
+                    "type": "string"
+                },
+                "quarter": {
+                    "type": "string"
+                },
+                "country": {
+                    "type": "string"
+                },
+                "role": {
+                    "type": "string"
+                },
+                "fieldOfActivity": {
+                    "type": "string"
+                },
+                "shoopingCart": {"type": "string"},
+                "favorites": {"type": "string"},
+                "sellerProducts": {
+                    "type": "array",
+                    "product": {"type": "string"}
+                }
+            }
+        },
+        "UserUpdated": {
+            "required": ["password", "_id", "phoneNumber", "role"],
+            "properties": {
+                "email": {
+                "type": "string",
+                "uniqueItems": true
+                },
+                "name": {
+                "type": "string"
+                },
+                "password": {
+                    "type": "string",
+                    "format": "password"
+                },
+                "phoneNumber": {
+                    "type": "number"
+                },
+                "town": {
+                    "type": "string"
+                },
+                "state": {
+                    "type": "string"
+                },
+                "quarter": {
+                    "type": "string"
+                },
+                "country": {
+                    "type": "string"
+                },
+                "role": {
+                    "type": "string"
+                },
+                "fieldOfActivity": {
+                    "type": "string"
+                },
+                "shoopingCart": {"type": "string"},
+                "favorites": {"type": "string"},
+                "sellerProducts": {
+                    "type": "array",
+                    "product": {"type": "string"}
+                }
+            }
+        },
+        "UserRegisted": {
+            "required": ["_id", "phoneNumber", "role"],
+            "properties": {
+                "_id": {
+                    "type": "string",
+                    "uniqueItems": true
+                },
+                "email": {
+                "type": "string",
+                "uniqueItems": true
+                },
+                "name": {
+                "type": "string"
+                },
+                "phoneNumber": {
+                    "type": "number"
+                },
+                "town": {
+                    "type": "string"
+                },
+                "state": {
+                    "type": "string"
+                },
+                "quarter": {
+                    "type": "string"
+                },
+                "country": {
+                    "type": "string"
+                },
+                "role": {
+                    "type": "string"
+                },
+                "fieldOfActivity": {
+                    "type": "string"
+                },
+                "shoopingCart": {"type": "string"},
+                "favorites": {"type": "string"},
+                "sellerProducts": {
+                    "type": "array",
+                    "product": {"type": "string"}
+                },
+                "token": {
+                    "type": "string"
+                }
+            }
+        },
+        "Users": {
+            "type": "array",
+            "$ref": "#/definitions/User"
+        }
+    },
+    "schemes": ["http"],
+    "consumes": ["application/json"],
+    "produces": ["application/json"]
+  }
+
+  

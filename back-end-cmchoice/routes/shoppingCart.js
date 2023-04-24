@@ -7,20 +7,23 @@ const shoppingCartRoutes = express.Router();
  
 // import the shoppingCart controller
 let shoppingCartControls = require('../controllers/shoppingCart.controller');
+
+// import the authentification middleware
+const authMiddleWare = require('../middleWare/authMiddleWare')
  
 // This section will help you get a list of all the shoppingCarts.
-shoppingCartRoutes.route("/shoppingCart").get(shoppingCartControls.all);
+shoppingCartRoutes.route("/shoppingCart").get(authMiddleWare, shoppingCartControls.all);
 
 // This section will help you create a shoppingCarts.
-shoppingCartRoutes.route("/shoppingcart/create").post(shoppingCartControls.createCart);
+shoppingCartRoutes.route("/shoppingcart/create").post(authMiddleWare, shoppingCartControls.createCart);
  
 // This section will help you get a single shoppingCart by id
-shoppingCartRoutes.route("/shoppingCart/:id").get(shoppingCartControls.getShoppingCart);
+shoppingCartRoutes.route("/shoppingCart/:id").get(authMiddleWare, shoppingCartControls.getShoppingCart);
  
 // This section will help you update a shoppingCart by id.
-// shoppingCartRoutes.route("/shoppingCart/update/:id").put(shoppingCartControls.updateShoppingCart);
+shoppingCartRoutes.route("/shoppingCart/update/:id").put(authMiddleWare, shoppingCartControls.updateShoppingCart);
  
 // This section will help you delete a shoppingCart
-// shoppingCartRoutes.route("/shoppingCart/delete/:id").delete(shoppingCartControls.deleteShoppingCart);
+shoppingCartRoutes.route("/shoppingCart/delete/:id").delete(authMiddleWare, shoppingCartControls.deleteShoppingCart);
  
 module.exports = shoppingCartRoutes;

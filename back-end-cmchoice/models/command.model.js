@@ -16,14 +16,18 @@ let Command = new Schema({
             message: 'unknow status'
         }
     },
+    products: [{
+        _id: false,
+        id: {type: mongoose.Types.ObjectId, ref: "Products"},
+        quantity: Number,
+    }],
     deliveryDate: {type: Date},
-    deliveryInfos:[{
+    deliveryInfos:{
         country: {type: String, required: true}, 
         state: {type: String, required: true}, 
         town: {type: String, required: true}, 
-        quater: {type: String, required: true}, 
-        customerPhoneNumber: {type: Number, required: true}
-    }]
+        quater: {type: String, required: true}
+    }
 },
 { 
     timestamps: true 
