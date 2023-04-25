@@ -15,18 +15,18 @@ const authMiddleWare = require('../middleWare/authMiddleWare')
 // favoriteRoutes.use(authMiddleWare)
  
 // This section will help you get a list of all the favorites.
-favoriteRoutes.route("/favorite").get(authMiddleWare, favoriteControls.all);
+favoriteRoutes.route("/favorites").get(authMiddleWare, favoriteControls.all);
 
 // This section will help you create a favorites.
-favoriteRoutes.route("/favorite/create").post(authMiddleWare, favoriteControls.createFavoriteList);
+favoriteRoutes.route("/favorites").post(authMiddleWare, favoriteControls.createFavoriteList);
  
 // This section will help you get a single favorite by id
-favoriteRoutes.route("/favorite/:id").get(authMiddleWare, favoriteControls.getFavoriteList);
+favoriteRoutes.route("/favorites/:id").get(authMiddleWare, favoriteControls.getFavoriteList);
  
 // This section will help you update a favorite by id.
-favoriteRoutes.route("/favorite/update/:id").put(authMiddleWare, favoriteControls.updateFavoriteList);
+favoriteRoutes.route("/favorites/:id").put(authMiddleWare, favoriteControls.updateFavoriteList);
  
 // This section will help you delete a favorite
-favoriteRoutes.route("/favorite/delete/:id").delete(authMiddleWare, favoriteControls.deleteFavoriteList);
+favoriteRoutes.route("/favorites/:id").delete(authMiddleWare, favoriteControls.deleteFavoriteList);
  
 module.exports = favoriteRoutes;

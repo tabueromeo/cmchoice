@@ -12,18 +12,18 @@ let productControls = require('../controllers/product.controller');
 const authMiddleWare = require('../middleWare/authMiddleWare')
  
 // This section will help you get a list of all the products.
-productRoutes.route("/product").get(productControls.all);
+productRoutes.route("/products").get(productControls.all);
 
 // This section will help you create a categorys.
-productRoutes.route("/product/create").post(authMiddleWare, productControls.create)
+productRoutes.route("/products").post(authMiddleWare, productControls.create)
  
 // This section will help you get a single product by id
-productRoutes.route("/product/:id").get(productControls.getProduct);
+productRoutes.route("/products/:id").get(productControls.getProduct);
  
 // This section will help you update a product by id.
-productRoutes.route("/product/update/:id").put(authMiddleWare, productControls.updateProduct);
+productRoutes.route("/products/:id").put(authMiddleWare, productControls.updateProduct);
  
 // This section will help you delete a product
-productRoutes.route("/product/delete/:id").delete(authMiddleWare, productControls.deleteProduct);
+productRoutes.route("/products/:id").delete(authMiddleWare, productControls.deleteProduct);
  
 module.exports = productRoutes;

@@ -15,12 +15,12 @@ const authMiddleWare = require('../middleWare/authMiddleWare')
 userRoutes.route("/users").get(authMiddleWare, UserControls.all);
  
 // This section will help you get a single user by id
-userRoutes.route("/user/:id").get(UserControls.getUser);
+userRoutes.route("/users/:id").get(UserControls.getUser);
  
 // This section will help you update a user by id.
-userRoutes.route("/user/update/:id").put(authMiddleWare, UserControls.updateUser);
+userRoutes.route("/users/:id").put(authMiddleWare, UserControls.updateUser);
  
 // This section will help you delete a user
-userRoutes.route("/user/delete/:id").delete(authMiddleWare, UserControls.deleteUser);
+userRoutes.route("/users/:id").delete(authMiddleWare, UserControls.deleteUser);
  
 module.exports = userRoutes;

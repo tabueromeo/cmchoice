@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const cookieparser = require('cookie-parser');
+const bodyParser = require('body-parser')
 const port = process.env.PORT || 5000;
 
 //  swagger integration
@@ -12,6 +13,7 @@ require("dotenv").config({ path: "./config.env" });
 app.use(cors());
 app.use(express.json());
 app.use(cookieparser());
+app.use(bodyParser.json());
 
 //usage of routes
 app.use(require("./routes/user"));

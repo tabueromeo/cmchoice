@@ -37,6 +37,30 @@
       {
         "name": "Users",
         "description": "Endpoints for users in the system"
+      },
+      {
+        "name": "Categories",
+        "description": "Endpoints for categories of products"
+      },
+      {
+        "name": "SubCategories",
+        "description": "Endpoints for subcategories of products"
+      },
+      {
+        "name": "Shopping Cart",
+        "description": "Endpoints for Shopping Cart"
+      },
+      {
+        "name": "Favorites List",
+        "description": "Endpoints for Favorites Products "
+      },
+      {
+        "name": "Commands",
+        "description": "Endpoints for Users Commands "
+      },
+      {
+        "name": "Products",
+        "description": "Endpoints for Products inthe system "
       }
     ],
     "paths": {
@@ -91,13 +115,13 @@
             }
           }
         },
-        "/user/{id}": {
+        "/users/{id}": {
             "parameters": [
               {
                 "name": "id",
                 "in": "path",
                 "required": true,
-                "description": "ID of user that we want to find",
+                "description": "ID of user that we want to update infos",
                 "type": "string"
               }
             ],
@@ -126,18 +150,7 @@
                         }
                     }
                 }
-              }
-        },
-        "/user/update/{id}": {
-            "parameters": [
-              {
-                "name": "id",
-                "in": "path",
-                "required": true,
-                "description": "ID of user that we want to update infos",
-                "type": "string"
-              }
-            ],
+            },
             "put": {
                 "security": [{
                     "bearerAuth": []
@@ -196,18 +209,7 @@
                         }
                     }
                 }
-              }
-        },
-        "/user/delete/{id}": {
-            "parameters": [
-              {
-                "name": "id",
-                "in": "path",
-                "required": true,
-                "description": "ID of user that we want to update infos",
-                "type": "string"
-              }
-            ],
+            },
             "delete": {
                 "security": [{
                     "bearerAuth": []
@@ -256,8 +258,9 @@
                         }
                     }
                 }
-              }
+            }
         },
+       
         "/auth/register": {
             "post": {
                 "tags": ["Auth"],
@@ -273,8 +276,8 @@
                     }
                 },
                 "responses": {
-                    "200": {
-                        "description": "OK",
+                    "201": {
+                        "description": "User registed",
                         "headers": {
                             "set-cookie": {
                                 "description": "Refresh token is render in the response cookie",
@@ -294,6 +297,1106 @@
                               "schema": {
                                 "type": "string"
                               }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/auth/login": {
+            "post": {
+                "tags": ["Auth"],
+                "summary": "login to an account",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "phoneNumber": {
+                                        "type": "number"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "format": "password"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "headers": {
+                            "set-cookie": {
+                                "description": "Refresh token is render in the response cookie",
+                                "schema": {
+                                  "type": "string"
+                                }
+                            }
+                        },
+                        "schema": {
+                        "$ref": "#/definitions/UserRegisted"
+                        }
+                    },
+                    "400": {
+                        "description": "Wrong password",
+                        "content": {
+                            "text/plain": {
+                              "schema": {
+                                "type": "string"
+                              }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "User Not Found",
+                        "content": {
+                            "text/plain": {
+                              "schema": {
+                                "type": "string"
+                              }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/auth": {
+            "get": {
+                "tags": ["Auth"],
+                "summary": "get a new access token after the last one expired",
+                "responses": {
+                    "201": {
+                        "description": "New access token created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "token": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "406": {
+                        "description": "Wrong or No refresh token",
+                        "content": {
+                            "text/plain": {
+                              "schema": {
+                                "type": "string"
+                              }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+
+        "/categories": {
+            "post": {
+                "security": [{
+                    "bearerAuth": []
+                }],
+                "tags": ["Categories"],
+                "summary": "Create a new category of product",
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/definitions/Category"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Acces Denied!",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Error",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "get": {
+                "tags": ["Categories"],
+                "summary": "Get all Categories products in the system",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/definitions/Category"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Error",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/categories/{id}": {
+            "parameters": [
+            {
+                "name": "id",
+                "in": "path",
+                "required": true,
+                "description": "ID of user that we want to update infos",
+                "type": "string"
+            }
+            ],
+            "get": {
+                "summary": "Find category with given ID",
+                "tags": ["Categories"],
+                "responses": {
+                    "200": {
+                        "description": "Category finded",
+                        "content": {
+                            "application/json": {
+                            "schema": {
+                                "$ref": "#/definitions/Category"
+                            }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Category Not Found",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Error",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "security": [{
+                    "bearerAuth": []
+                }],
+                "summary": "Update a categroy infos",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/definitions/CategoryToUpdate"
+                            }
+                        }
+                    }
+                },
+                "tags": ["Categories"],
+                "responses": {
+                    "200": {
+                        "description": "Category updated",
+                        "content": {
+                            "application/json": {
+                            "schema": {
+                                "$ref": "#/definitions/Category"
+                            }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unvalid Token",
+                        "content": {
+                            "text/plain": {
+                            "schema": {
+                                "type": "string"
+                            }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Acces Denied!",
+                        "content": {
+                            "text/plain": {
+                            "schema": {
+                                "type": "string"
+                            }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "User to update or current  User Token Not Found",
+                        "content": {
+                            "text/plain": {
+                            "schema": {
+                                "type": "string"
+                            }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "security": [{
+                    "bearerAuth": []
+                }],
+                "summary": "Delete a category",
+                "tags": ["Categories"],
+                "responses": {
+                    "200": {
+                        "description": "Category deleted",
+                        "content": {
+                            "text/plain": {
+                            "schema": {
+                                "type": "string"
+                            }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unvalid Token",
+                        "content": {
+                            "text/plain": {
+                            "schema": {
+                                "type": "string"
+                            }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Acces Denied!",
+                        "content": {
+                            "text/plain": {
+                            "schema": {
+                                "type": "string"
+                            }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Token Not Found",
+                        "content": {
+                            "text/plain": {
+                            "schema": {
+                                "type": "string"
+                            }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+
+        "/subcategories": {
+            "post": {
+                "security": [{
+                    "bearerAuth": []
+                }],
+                "tags": ["SubCategories"],
+                "summary": "Create a new subcategory of product",
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/definitions/Category"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Acces Denied!",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Error",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "get": {
+                "tags": ["SubCategories"],
+                "summary": "Get all SubCategories products in the system",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/definitions/Category"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Error",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/subcategories/{id}": {
+            "parameters": [
+            {
+                "name": "id",
+                "in": "path",
+                "required": true,
+                "description": "ID of user that we want to update infos",
+                "type": "string"
+            }
+            ],
+            "get": {
+                "summary": "Find subcategory with given ID",
+                "tags": ["SubCategories"],
+                "responses": {
+                    "200": {
+                        "description": "Subcategory finded",
+                        "content": {
+                            "application/json": {
+                            "schema": {
+                                "$ref": "#/definitions/Category"
+                            }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "subCategory Not Found",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Error",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "security": [{
+                    "bearerAuth": []
+                }],
+                "summary": "Update a subcategroy infos",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/definitions/CategoryToUpdate"
+                            }
+                        }
+                    }
+                },
+                "tags": ["SubCategories"],
+                "responses": {
+                    "200": {
+                        "description": "subCategory updated",
+                        "content": {
+                            "application/json": {
+                            "schema": {
+                                "$ref": "#/definitions/Category"
+                            }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unvalid Token",
+                        "content": {
+                            "text/plain": {
+                            "schema": {
+                                "type": "string"
+                            }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Acces Denied!",
+                        "content": {
+                            "text/plain": {
+                            "schema": {
+                                "type": "string"
+                            }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "User to update or current  User Token Not Found",
+                        "content": {
+                            "text/plain": {
+                            "schema": {
+                                "type": "string"
+                            }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "security": [{
+                    "bearerAuth": []
+                }],
+                "summary": "Delete a subcategory",
+                "tags": ["SubCategories"],
+                "responses": {
+                    "200": {
+                        "description": "SubCategory deleted",
+                        "content": {
+                            "text/plain": {
+                            "schema": {
+                                "type": "string"
+                            }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unvalid Token",
+                        "content": {
+                            "text/plain": {
+                            "schema": {
+                                "type": "string"
+                            }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Acces Denied!",
+                        "content": {
+                            "text/plain": {
+                            "schema": {
+                                "type": "string"
+                            }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Token Not Found",
+                        "content": {
+                            "text/plain": {
+                            "schema": {
+                                "type": "string"
+                            }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+
+        "/shoppingcarts": {
+            "post": {
+                "security": [{
+                    "bearerAuth": []
+                }],
+                "tags": ["Shopping Cart"],
+                "summary": "Create a new Cart",
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/definitions/Cart"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Acces Denied!",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "User Not Found",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Error",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "get": {
+                "security": [{
+                    "bearerAuth": []
+                }],
+                "tags": ["Shopping Cart"],
+                "summary": "Get all carts in the system",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/definitions/Cart"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unvalid Token",
+                        "content": {
+                            "text/plain": {
+                            "schema": {
+                                "type": "string"
+                            }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Acces Denied!",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Error",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/shoppingcarts/{id}": {
+            "parameters": [
+            {
+                "name": "id",
+                "in": "path",
+                "required": true,
+                "description": "ID of user that we want to update infos",
+                "type": "string"
+            }
+            ],
+            "get": {
+                "security": [{
+                    "bearerAuth": []
+                }],
+                "summary": "Find Cart with given ID",
+                "tags": ["Shopping Cart"],
+                "responses": {
+                    "200": {
+                        "description": "Cart finded",
+                        "content": {
+                            "application/json": {
+                            "schema": {
+                                "$ref": "#/definitions/Category"
+                            }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unvalid Token",
+                        "content": {
+                            "text/plain": {
+                            "schema": {
+                                "type": "string"
+                            }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Acces Denied!",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Cart Not Found",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Error",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "security": [{
+                    "bearerAuth": []
+                }],
+                "summary": "Update a Cart infos",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/definitions/Cart"
+                            }
+                        }
+                    }
+                },
+                "tags": ["Shopping Cart"],
+                "responses": {
+                    "200": {
+                        "description": "subCategory updated",
+                        "content": {
+                            "application/json": {
+                            "schema": {
+                                "$ref": "#/definitions/Cart"
+                            }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unvalid Token",
+                        "content": {
+                            "text/plain": {
+                            "schema": {
+                                "type": "string"
+                            }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Acces Denied!",
+                        "content": {
+                            "text/plain": {
+                            "schema": {
+                                "type": "string"
+                            }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Cart to update or current  User Token Not Found",
+                        "content": {
+                            "text/plain": {
+                            "schema": {
+                                "type": "string"
+                            }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "security": [{
+                    "bearerAuth": []
+                }],
+                "summary": "Delete a Cart",
+                "tags": ["Shopping Cart"],
+                "responses": {
+                    "200": {
+                        "description": "Cart deleted",
+                        "content": {
+                            "text/plain": {
+                            "schema": {
+                                "type": "string"
+                            }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unvalid Token",
+                        "content": {
+                            "text/plain": {
+                            "schema": {
+                                "type": "string"
+                            }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Acces Denied!",
+                        "content": {
+                            "text/plain": {
+                            "schema": {
+                                "type": "string"
+                            }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Token Not Found",
+                        "content": {
+                            "text/plain": {
+                            "schema": {
+                                "type": "string"
+                            }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/favorites": {
+            "post": {
+                "security": [{
+                    "bearerAuth": []
+                }],
+                "tags": ["Favorites List"],
+                "summary": "Create a new Favorites List",
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/definitions/Favorites"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Acces Denied!",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "User Not Found",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Error",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "get": {
+                "security": [{
+                    "bearerAuth": []
+                }],
+                "tags": ["Favorites List"],
+                "summary": "Get all Favorites List in the system",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/definitions/Favorites"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unvalid Token",
+                        "content": {
+                            "text/plain": {
+                            "schema": {
+                                "type": "string"
+                            }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Acces Denied!",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Error",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/favorites/{id}": {
+            "parameters": [
+            {
+                "name": "id",
+                "in": "path",
+                "required": true,
+                "description": "ID of a Favorites List",
+                "type": "string"
+            }
+            ],
+            "get": {
+                "security": [{
+                    "bearerAuth": []
+                }],
+                "summary": "Find Favorites List with given ID",
+                "tags": ["Favorites List"],
+                "responses": {
+                    "200": {
+                        "description": "Favorites List finded",
+                        "content": {
+                            "application/json": {
+                            "schema": {
+                                "$ref": "#/definitions/Favorites"
+                            }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unvalid Token",
+                        "content": {
+                            "text/plain": {
+                            "schema": {
+                                "type": "string"
+                            }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Acces Denied!",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Favorites List Not Found",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Error",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "security": [{
+                    "bearerAuth": []
+                }],
+                "summary": "Update a Favorites List infos",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/definitions/Favorites"
+                            }
+                        }
+                    }
+                },
+                "tags": ["Favorites List"],
+                "responses": {
+                    "200": {
+                        "description": "Favorites List updated",
+                        "content": {
+                            "application/json": {
+                            "schema": {
+                                "$ref": "#/definitions/Favorites"
+                            }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unvalid Token",
+                        "content": {
+                            "text/plain": {
+                            "schema": {
+                                "type": "string"
+                            }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Acces Denied!",
+                        "content": {
+                            "text/plain": {
+                            "schema": {
+                                "type": "string"
+                            }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Favorites List to update or current  User Token Not Found",
+                        "content": {
+                            "text/plain": {
+                            "schema": {
+                                "type": "string"
+                            }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "security": [{
+                    "bearerAuth": []
+                }],
+                "summary": "Delete a Favorites List",
+                "tags": ["Favorites List"],
+                "responses": {
+                    "200": {
+                        "description": "Favorites List deleted",
+                        "content": {
+                            "text/plain": {
+                            "schema": {
+                                "type": "string"
+                            }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unvalid Token",
+                        "content": {
+                            "text/plain": {
+                            "schema": {
+                                "type": "string"
+                            }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Acces Denied!",
+                        "content": {
+                            "text/plain": {
+                            "schema": {
+                                "type": "string"
+                            }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Token Not Found",
+                        "content": {
+                            "text/plain": {
+                            "schema": {
+                                "type": "string"
+                            }
                             }
                         }
                     }
@@ -437,6 +1540,90 @@
         "Users": {
             "type": "array",
             "$ref": "#/definitions/User"
+        },
+        "Category": {
+            "required": ["name"],
+            "properties": {
+                "_id": {
+                    "type": "string",
+                    "uniqueItems": true
+                },
+                "name": {
+                    "type": "string",
+                    "uniqueItems": true
+                },
+                "imagePath": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "subcategories": {
+                    "type": "array"
+                }
+            }
+        },
+        "CategoryToUpdate": {
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "uniqueItems": true
+                },
+                "imagePath": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "subcategories": {
+                    "type": "array"
+                }
+            }
+        },
+        "Cart": {
+            "required": ["userId"],
+            "properties": {
+                "userId": {
+                    "type": "string",
+                    "uniqueItems": true
+                },
+                "products": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "commands": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "Favorites": {
+            "required": ["userId"],
+            "properties": {
+                "userId": {
+                    "type": "string",
+                    "uniqueItems": true
+                },
+                "products": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
         }
     },
     "schemes": ["http"],
