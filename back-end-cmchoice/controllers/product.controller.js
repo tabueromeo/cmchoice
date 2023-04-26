@@ -11,7 +11,7 @@ let ProductController = {
             if (currentUserRole === "seller") {
                 const sameProduct = await ProductModel.findOne({name, sellerId: currentUserId})
                 if (sameProduct) {
-                    res.status(406).send("You have already use this name for an other product  ")
+                    res.status(409).send("You have already use this name for an other product  ")
                 } else {
                     let newProduct = new ProductModel({...req.body, sellerId: currentUserId})
                     newProduct.save()

@@ -11,7 +11,7 @@
     },
     "servers": [
         {
-            "url": "http://localhost:5000",
+            "url": "http://localhost:5000/api/v1",
             "description": "Development server"
         }
     ],
@@ -27,8 +27,6 @@
             }
         }
     },
-    "host": "localhost:5000",
-    "basePath": "/",
     "tags": [
       {
         "name": "Auth",
@@ -1125,6 +1123,7 @@
                 }
             }
         },
+
         "/favorites": {
             "post": {
                 "security": [{
@@ -1402,6 +1401,624 @@
                     }
                 }
             }
+        },
+
+        "/commands": {
+            "post": {
+                "security": [{
+                    "bearerAuth": []
+                }],
+                "tags": ["Commands"],
+                "summary": "Create a new Command",
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/definitions/Commands"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unvalid Token",
+                        "content": {
+                            "text/plain": {
+                            "schema": {
+                                "type": "string"
+                            }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Acces Denied!",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Shopping Cart missing or Not Found",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Error",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "get": {
+                "security": [{
+                    "bearerAuth": []
+                }],
+                "tags": ["Commands"],
+                "summary": "Get all Commands in the system",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type":"array",
+                                    "items": {
+                                    "$ref": "#/definitions/Commands"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unvalid Token",
+                        "content": {
+                            "text/plain": {
+                            "schema": {
+                                "type": "string"
+                            }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Acces Denied!",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Error",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/commands/{id}": {
+            "parameters": [
+            {
+                "name": "id",
+                "in": "path",
+                "required": true,
+                "description": "ID of a command",
+                "type": "string"
+            }
+            ],
+            "get": {
+                "security": [{
+                    "bearerAuth": []
+                }],
+                "summary": "Find Command with given ID",
+                "tags": ["Commands"],
+                "responses": {
+                    "200": {
+                        "description": "Cammand finded",
+                        "content": {
+                            "application/json": {
+                            "schema": {
+                                "$ref": "#/definitions/Cammands"
+                            }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unvalid Token",
+                        "content": {
+                            "text/plain": {
+                            "schema": {
+                                "type": "string"
+                            }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Acces Denied!",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Command or token Not Found",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Error",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "security": [{
+                    "bearerAuth": []
+                }],
+                "summary": "Update a Command infos",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/definitions/Commands"
+                            }
+                        }
+                    }
+                },
+                "tags": ["Commands"],
+                "responses": {
+                    "200": {
+                        "description": "Favorites List updated",
+                        "content": {
+                            "application/json": {
+                            "schema": {
+                                "$ref": "#/definitions/Favorites"
+                            }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unvalid Token",
+                        "content": {
+                            "text/plain": {
+                            "schema": {
+                                "type": "string"
+                            }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Acces Denied!",
+                        "content": {
+                            "text/plain": {
+                            "schema": {
+                                "type": "string"
+                            }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Command to update or current  User Token Not Found",
+                        "content": {
+                            "text/plain": {
+                            "schema": {
+                                "type": "string"
+                            }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "security": [{
+                    "bearerAuth": []
+                }],
+                "summary": "Delete a Command",
+                "tags": ["Commands"],
+                "responses": {
+                    "200": {
+                        "description": "Command deleted",
+                        "content": {
+                            "text/plain": {
+                            "schema": {
+                                "type": "string"
+                            }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unvalid Token",
+                        "content": {
+                            "text/plain": {
+                            "schema": {
+                                "type": "string"
+                            }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Acces Denied!",
+                        "content": {
+                            "text/plain": {
+                            "schema": {
+                                "type": "string"
+                            }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Token Not Found",
+                        "content": {
+                            "text/plain": {
+                            "schema": {
+                                "type": "string"
+                            }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+
+        "/products": {
+           
+            "post": {
+                "security": [{
+                    "bearerAuth": []
+                }],
+                "tags": ["Products"],
+                "summary": "Create a new Product",
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/definitions/Products"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unvalid Token",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Acces Denied!",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "User doesnt exist or Token Not Found",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "409": {
+                        "description": "Product name alrady used by the same seller",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Error",
+                        "content": {
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "type":"object",
+                                        "properties": {
+                                        "message": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "get": {
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "page number",
+                        "type": "number"
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "max number of products in a page",
+                        "type": "number"
+                    },
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "search by product's name",
+                        "type": "string"
+                    },
+                    {
+                        "name": "tag",
+                        "in": "query",
+                        "description": "filter by tag",
+                        "type": "string"
+                    },
+                    {
+                        "name": "status",
+                        "in": "query",
+                        "description": "filter by status",
+                        "type": "string"
+                    },
+                    {
+                        "name": "sellerId",
+                        "in": "query",
+                        "description": "filter by seller Id",
+                        "type": "string"
+                    },
+                    {
+                        "name": "subCategory",
+                        "in": "query",
+                        "description": "filter by subCategory name",
+                        "type": "string"
+                    },
+                    {
+                        "name": "priceMin",
+                        "in": "query",
+                        "description": "filter by minimum price",
+                        "type": "string"
+                    },
+                    {
+                        "name": "priceMax",
+                        "in": "query",
+                        "description": "filter by maximum price",
+                        "type": "string"
+                    }
+                ],
+                "tags": ["Products"],
+                "summary": "Get all Products in the system",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type":"array",
+                                    "items": {
+                                        "$ref": "#/definitions/Products"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type":"object",
+                                    "properties": {
+                                    "message": {
+                                        "type":"string"
+                                    }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/products/{id}": {
+            "parameters": [
+            {
+                "name": "id",
+                "in": "path",
+                "required": true,
+                "description": "ID of a product",
+                "type": "string"
+            }
+            ],
+            "get": {
+                "security": [{
+                    "bearerAuth": []
+                }],
+                "summary": "Find product with given ID",
+                "tags": ["Products"],
+                "responses": {
+                    "200": {
+                        "description": "Product finded",
+                        "content": {
+                            "application/json": {
+                            "schema": {
+                                "$ref": "#/definitions/Products"
+                            }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Product Not Found",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Error",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "security": [{
+                    "bearerAuth": []
+                }],
+                "summary": "Update a Product infos",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/definitions/Products"
+                            }
+                        }
+                    }
+                },
+                "tags": ["Products"],
+                "responses": {
+                    "200": {
+                        "description": "Products List updated",
+                        "content": {
+                            "application/json": {
+                            "schema": {
+                                "$ref": "#/definitions/Products"
+                            }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unvalid Token",
+                        "content": {
+                            "text/plain": {
+                            "schema": {
+                                "type": "string"
+                            }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Acces Denied!",
+                        "content": {
+                            "text/plain": {
+                            "schema": {
+                                "type": "string"
+                            }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Product to update or current  User Token Not Found",
+                        "content": {
+                            "text/plain": {
+                            "schema": {
+                                "type": "string"
+                            }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "security": [{
+                    "bearerAuth": []
+                }],
+                "summary": "Delete a Product",
+                "tags": ["Products"],
+                "responses": {
+                    "200": {
+                        "description": "Product deleted",
+                        "content": {
+                            "text/plain": {
+                            "schema": {
+                                "type": "string"
+                            }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unvalid Token",
+                        "content": {
+                            "text/plain": {
+                            "schema": {
+                                "type": "string"
+                            }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Acces Denied!",
+                        "content": {
+                            "text/plain": {
+                            "schema": {
+                                "type": "string"
+                            }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Token Not Found",
+                        "content": {
+                            "text/plain": {
+                            "schema": {
+                                "type": "string"
+                            }
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
     "definitions": {
@@ -1621,6 +2238,86 @@
                         "properties": {
                             "type": "string"
                         }
+                    }
+                }
+            }
+        },
+        "Commands": {
+            "required": ["shoppingCart"],
+            "properties": {
+                "shoppingCart": {
+                    "type": "string",
+                    "uniqueItems": true
+                },
+                "status": {
+                    "type": "string"
+                },
+                "products": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "id": {
+                                "type": "string",
+                                "uniqueItems": true
+                            },
+                            "quantity": {
+                                "type": "number"
+                            }
+                        }
+                    }
+                },
+                "deliveryDate": {
+                    "type": "string",
+                    "format": "date"
+                },
+                "deliveryInfos": {
+                    "type":"object",
+                    "properties":{
+                        "country":{
+                            "type":"string"
+                        },
+                        "state":{
+                            "type":"string"
+                        },
+                        "town":{
+                            "type":"string"
+                        },
+                        "quater":{
+                            "type":"string"
+                        }
+                    }
+                }
+            }
+        },
+        "Products": {
+            "required": ["name","description","status"],
+            "properties":{
+                "name":{
+                    "type":"string"
+                },
+                "description":{
+                    "type":"string"
+                },
+                "status":{
+                    "type":"string"
+                },
+                "sellerId":{
+                    "type":"string"
+                },
+                "subCategory":{
+                    "type":"string"
+                },
+                "imagesPath": {
+                    "type":"array",
+                    "items":{
+                        "type":"string"
+                    }
+                },
+                "tags": {
+                    "type":"array",
+                    "items":{
+                        "type":"string"
                     }
                 }
             }

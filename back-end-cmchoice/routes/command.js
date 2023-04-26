@@ -15,18 +15,18 @@ const authMiddleWare = require('../middleWare/authMiddleWare')
 // commandRoutes.use(authMiddleWare)
 
 // This section will help you create a categorys.
-commandRoutes.route("/commands").post(authMiddleWare, commandControls.createCommand);
+commandRoutes.route("/api/v1/commands").post(authMiddleWare, commandControls.createCommand);
  
 // This section will help you get a list of all the commands.
-commandRoutes.route("/commands").get(authMiddleWare, commandControls.all);
+commandRoutes.route("/api/v1/commands").get(authMiddleWare, commandControls.all);
  
 // This section will help you get a single command by id
-commandRoutes.route("/commands/:id").get(authMiddleWare, commandControls.getCommand);
+commandRoutes.route("/api/v1/commands/:id").get(authMiddleWare, commandControls.getCommand);
  
 // This section will help you update a command by id.
-commandRoutes.route("/commands/:id").put(authMiddleWare, commandControls.updateCommand);
+commandRoutes.route("/api/v1/commands/:id").put(authMiddleWare, commandControls.updateCommand);
  
 // This section will help you delete a command
-commandRoutes.route("/commands/:id").delete(authMiddleWare, commandControls.deleteCommand);
+commandRoutes.route("/api/v1/commands/:id").delete(authMiddleWare, commandControls.deleteCommand);
  
 module.exports = commandRoutes;

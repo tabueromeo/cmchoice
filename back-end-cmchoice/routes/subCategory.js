@@ -12,18 +12,18 @@ let SubCategoryControls = require('../controllers/subCategory.controller');
 const authMiddleWare = require('../middleWare/authMiddleWare')
  
 // This section will help you get a list of all the subCategorys.
-subCategoryRoutes.route("/subCategories").get(SubCategoryControls.all);
+subCategoryRoutes.route("/api/v1/subCategories").get(SubCategoryControls.all);
 
 // This section will help you create a subCategorys.
-subCategoryRoutes.route("/subCategories").post(authMiddleWare, SubCategoryControls.createSubCategory);
+subCategoryRoutes.route("/api/v1/subCategories").post(authMiddleWare, SubCategoryControls.createSubCategory);
  
 // This section will help you get a single subCategory by id
-subCategoryRoutes.route("/subCategories/:id").get(SubCategoryControls.getSubCategory);
+subCategoryRoutes.route("/api/v1/subCategories/:id").get(SubCategoryControls.getSubCategory);
  
 // This section will help you update a subCategory by id.
-subCategoryRoutes.route("/subCategories/:id").put(authMiddleWare, SubCategoryControls.updateSubCategory);
+subCategoryRoutes.route("/api/v1/subCategories/:id").put(authMiddleWare, SubCategoryControls.updateSubCategory);
  
 // This section will help you delete a subCategory
-subCategoryRoutes.route("/subCategories/:id").delete(authMiddleWare, SubCategoryControls.deleteSubCategory);
+subCategoryRoutes.route("/api/v1/subCategories/:id").delete(authMiddleWare, SubCategoryControls.deleteSubCategory);
  
 module.exports = subCategoryRoutes;

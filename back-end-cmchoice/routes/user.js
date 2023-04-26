@@ -12,15 +12,15 @@ let UserControls = require('../controllers/user.controller');
 const authMiddleWare = require('../middleWare/authMiddleWare')
  
 // This section will help you get a list of all the users.
-userRoutes.route("/users").get(authMiddleWare, UserControls.all);
+userRoutes.route("/api/v1/users").get(authMiddleWare, UserControls.all);
  
 // This section will help you get a single user by id
-userRoutes.route("/users/:id").get(UserControls.getUser);
+userRoutes.route("/api/v1/users/:id").get(UserControls.getUser);
  
 // This section will help you update a user by id.
-userRoutes.route("/users/:id").put(authMiddleWare, UserControls.updateUser);
+userRoutes.route("/api/v1/users/:id").put(authMiddleWare, UserControls.updateUser);
  
 // This section will help you delete a user
-userRoutes.route("/users/:id").delete(authMiddleWare, UserControls.deleteUser);
+userRoutes.route("/api/v1/users/:id").delete(authMiddleWare, UserControls.deleteUser);
  
 module.exports = userRoutes;

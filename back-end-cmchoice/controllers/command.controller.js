@@ -16,7 +16,7 @@ let CommandController = {
             .then(data => {
               res.json(data)
             })
-            .catch(error => console.log(error));
+            .catch(error => res.status(500).json(error) )
         } else {
             res.status(403).send("Acces Denied! You cant do this")
         }
@@ -28,24 +28,29 @@ let CommandController = {
         const {currentUserId} =  req.user
         if ( cartId) {
             const cart = await CartModel.findById(cartId)
-            if (currentUserId == cart.userId) {
-                try {
-                    let newCommand = new CommandModel(req.body)
-                    const commandCreated = await newCommand.save()
-                    cart.commands.push({command: commandCreated}) 
-                    cart.products = []
-                    cart.save()
-                    res.status(200).json(commandCreated)
-                    
-                } catch (error) {
-                    res.status(500).json(error)
+            if (cart) {
+                if (currentUserId == cart.userId) {
+                    try {
+                        let newCommand = new CommandModel(req.body)
+                        const commandCreated = await newCommand.save()
+                        cart.commands.push({command: commandCreated}) 
+                        cart.products = []
+                        cart.save()
+                        res.status(200).json(commandCreated)
+                        
+                    } catch (error) {
+                        res.status(500).json(error)
+                    }
+                } else {
+                    res.status(403).send("Acces Denied!  You cant do this")
                 }
             } else {
-                res.status(403).send("Acces Denied! 2 You cant do this")
+                res.status(404).send("Shopping cart Not found")
             }
             
+            
         } else {
-            res.status(403).send("Acces Denied! You cant do this")
+            res.status(404).send("Missing shopping cart")
         }
     },
     getCommand: async(req,res) => {
