@@ -9,7 +9,7 @@ const port = process.env.PORT || 5000;
 const swaggerUi = require('swagger-ui-express'),
 swaggerDocument = require('./swagger.json');
 
-require("dotenv").config({ path: "./config.env" });
+require("dotenv")
 app.use(cors());
 app.use(express.json());
 app.use(cookieparser());
