@@ -2209,7 +2209,10 @@
                     "items": {
                         "type": "object",
                         "properties": {
-                            "type": "string"
+                            "item": {
+                                "type": "string"
+                            }
+                            
                         }
                     }
                 },
@@ -2218,7 +2221,10 @@
                     "items": {
                         "type": "object",
                         "properties": {
-                            "type": "string"
+                            "command": {
+                                "type": "string"
+                            }
+                            
                         }
                     }
                 }
@@ -2236,7 +2242,10 @@
                     "items": {
                         "type": "object",
                         "properties": {
-                            "type": "string"
+                            "product": {
+                                "type": "string"
+                            }
+                            
                         }
                     }
                 }
