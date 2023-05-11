@@ -47,7 +47,7 @@ let User = new Schema({
         product: {type: mongoose.Types.ObjectId, ref: "Products"
     }}]
 },
-{ 
+{   
     timestamps: true
 });
 module.exports = mongoose.model('users', User);
