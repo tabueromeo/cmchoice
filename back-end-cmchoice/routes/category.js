@@ -6,24 +6,32 @@ const express = require("express");
 const categoryRoutes = express.Router();
 
 // import the authentification middleware
-const authMiddleWare = require('../middleWare/authMiddleWare')
- 
+const authMiddleWare = require("../middleWare/authMiddleWare");
+
 // import the category controller
-let CategoryControls = require('../controllers/category.controller');
- 
+let CategoryControls = require("../controllers/categoryController");
+
 // This section will help you get a list of all the categorys.
 categoryRoutes.route("/api/v1/categories").get(CategoryControls.all);
 
 // This section will help you create a categorys.
-categoryRoutes.route("/api/v1/categories").post(authMiddleWare, CategoryControls.createCategory);
- 
+categoryRoutes
+	.route("/api/v1/categories")
+	.post(authMiddleWare, CategoryControls.createCategory);
+
 // This section will help you get a single category by id
-categoryRoutes.route("/api/v1/categories/:id").get(CategoryControls.getCategory);
- 
+categoryRoutes
+	.route("/api/v1/categories/:id")
+	.get(CategoryControls.getCategory);
+
 // This section will help you update a category by id.
-categoryRoutes.route("/api/v1/categories/:id").put(authMiddleWare, CategoryControls.updateCategory);
- 
+categoryRoutes
+	.route("/api/v1/categories/:id")
+	.put(authMiddleWare, CategoryControls.updateCategory);
+
 // This section will help you delete a category
-categoryRoutes.route("/api/v1/categories/:id").delete(authMiddleWare, CategoryControls.deleteCategory);
- 
+categoryRoutes
+	.route("/api/v1/categories/:id")
+	.delete(authMiddleWare, CategoryControls.deleteCategory);
+
 module.exports = categoryRoutes;
