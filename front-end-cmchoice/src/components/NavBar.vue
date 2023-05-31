@@ -170,12 +170,10 @@
 
 
 <script>
-  import { mapGetters } from "vuex"; //avec le mapping
+import { mapGetters } from "vuex"; 
 
 export default {
    computed: { 
-      // ...mapGetters(['cartItemCount']) ,
-     //  ...mapGetters(['cartMod/cartItemCount']),
        ...mapGetters({
            cartItemCount:'cartMod/cartItemCount',
         }),
