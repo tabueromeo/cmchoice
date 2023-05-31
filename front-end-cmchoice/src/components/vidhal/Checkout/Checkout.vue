@@ -34,7 +34,7 @@
                     </div>
                     <div class="infos">
                       <label class="form-label text-sm text-uppercase" for="country">Country</label>
-                      <select  class="select-style country" id="country" data-customclass="form-control form-control-lg rounded-0">
+                      <select style="height: 45.2px;"  class="select-style country" id="country" data-customclass="form-control form-control-lg rounded-0">
                         <option value=""></option>
                       </select>
                     </div>
@@ -69,11 +69,13 @@
                   <div class="card-body">
                     <h5 class="h5 text-uppercase mb-4">Your order</h5>
                     <ul class="list-unstyled mb-0">
-                      <li class="d-flex align-items-center justify-content-between"><strong class="small fw-bold">Red digital smartwatch</strong><span class="text-muted small">$250</span></li>
-                      <li class="border-bottom my-2"></li>
-                      <li class="d-flex align-items-center justify-content-between"><strong class="small fw-bold">Gray Nike running shoes</strong><span class="text-muted small">$351</span></li>
-                      <li class="border-bottom my-2"></li>
-                      <li class="d-flex align-items-center justify-content-between"><strong class="text-uppercase small fw-bold">Total</strong><span>$601</span></li>
+                      <div v-for="element in cart" :key="element.id" class="group">
+                        <li class="d-flex align-items-center justify-content-between"><strong class="small fw-bold">{{element.product.name}}</strong><span class="text-muted small">{{element.product.price}} FCFA</span></li>
+                        <li class="border-bottom my-2"></li>
+                      </div>
+                      <!-- <li class="d-flex align-items-center justify-content-between"><strong class="small fw-bold">Gray Nike running shoes</strong><span class="text-muted small">$351</span></li>
+                      <li class="border-bottom my-2"></li> -->
+                      <li class="d-flex align-items-center justify-content-between"><strong class="text-uppercase small fw-bold">Total</strong><span>{{cartTotalPrice}} FCFA</span></li>
                     </ul>
                   </div>
                 </div>
@@ -84,21 +86,18 @@
 </template>
 
 <script>
+import {mapState,mapGetters} from "vuex";
+
 export default {
-  name: '', 
-  props: {
-    
+  computed: {
+     ...mapState({
+       cart : state => state.cartMod.cart
+     }),
+     ...mapGetters({
+       cartTotalPrice:'cartMod/cartTotalPrice'
+       }),
   },
-
-  data() { 
-        return { 
-           
-            
-        }
-    },
-
-   
-
+ 
   methods: {
       ChooseCountry() {
         var response =  [
@@ -1322,16 +1321,13 @@ export default {
 		document.querySelectorAll('select.country').forEach((el) => {
 			el.insertAdjacentHTML('beforeend', selectOption);
 		  });
-        } 
+      } ,
         
    },
-   mounted() {
-    this.ChooseCountry();
-    console.log("terra");
-  },
-
    
-
+  mounted() {
+    this.ChooseCountry();
+  },
 } 
 
 </script>

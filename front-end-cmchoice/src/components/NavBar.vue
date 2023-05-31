@@ -108,7 +108,7 @@
                     <RouterLink to="/panier" class="navLink" activeClass="activeLink" >
                         <i class="fa-solid fa-cart-shopping me-1 text-gray"></i>
                         Panier
-                        <small class="text-gray fw-normal">(2)</small>
+                        <small class="text-gray fw-normal">({{cartItemCount}})</small>
                     </RouterLink>
                 </li>
                 <li class="nav-item dropdown" v-if="isAuthenfied">
@@ -168,10 +168,26 @@
       </header>
 </template>
 
-<style scoped>
-.ps-4i {
 
+<script>
+  import { mapGetters } from "vuex"; //avec le mapping
+
+export default {
+   computed: { 
+      // ...mapGetters(['cartItemCount']) ,
+     //  ...mapGetters(['cartMod/cartItemCount']),
+       ...mapGetters({
+           cartItemCount:'cartMod/cartItemCount',
+        }),
+   }
+ 
 }
+</script>
+
+<style scoped>
+/* .ps-4i {
+
+} */
 .bg-gray{
     background-color: #f1f3f4;
 }

@@ -1,10 +1,10 @@
 <template>
-    <AddProduct/>
+    <AddProduct2/>
 </template>
 
 
  <script setup>
-   import AddProduct from "../components/vidhal/AddProduct/AddProduct.vue";
+   import AddProduct2 from "../components/vidhal/AddProduct/AddProduct2.vue";
  </script>
 
 

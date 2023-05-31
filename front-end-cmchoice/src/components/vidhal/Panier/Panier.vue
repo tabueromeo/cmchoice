@@ -33,75 +33,48 @@
                           </thead>
                           <tbody>
                                <!-- product1-->
-                            <tr>
+                            <tr v-for="element in cart" :key="element.id">
                               <th>
                                 <div class="product-image">
                                   <img src="src/assets/img/product-detail-3.jpg" alt="..." width="70"/>
-                                  <div class="product-name"><strong>Red digital smartwatch</strong></div>
+                                  <div class="product-name"><strong>{{element.product.name}}</strong></div>
                                 </div>
                               </th>
                               <td class="p-3 align-middle border-light">
-                                <p class="small">$250</p>
+                                <p class="small">{{element.product.price}} FCFA</p>
                               </td>
                               <td class="p-3 align-middle border-light">
                                 <div class=" border flex aic jcsb px-3">
                                   <span class="small text-uppercase text-gray">Quantity</span>
                                   <div class="quantity">
-                                    <button v-on:click="ReducedQuantity" class="dec-btn p-0">
-                                      <i class="fas fa-caret-left"></i>
-                                    </button>
-                                    <input id="InputQuantity" class="form-control form-control-sm border-0 shadow-0 p-0" type="text" value="1"/>
-                                    <button  v-on:click="MoreQuantity" class="inc-btn p-0">
-                                      <i class="fas fa-caret-right"></i>
-                                    </button>
+                                    <input disabled id="InputQuantity" v-model.number="element.quantity" type="text"  class="form-control form-control-sm border-0 shadow-0 p-0" />
                                   </div>
                                 </div>
                               </td>
                               <td class="p-3 align-middle border-light">
-                                <p class="total-price small">$250</p>
+                                <p class="total-price small">{{parseInt(element.quantity) * parseInt( element.product.price)}} FCFA</p>
                               </td>
                               <td  class="p-3 align-middle border-light" >
-                                <i class="fas fa-trash-alt text-muted"></i>
+                                <i class="fas fa-trash-alt text-muted" @click="removeItemCartActions(element.product)"></i>
                               </td>
                             </tr>
                             <!-- product2-->
-                            <tr>
-                              <th>
-                                <div class="product-image"><img src="src/assets/img/product-detail-2.jpg" alt="..." width="70"/>
-                                <div class="product-name"><strong>Apple watch</strong></div>
-                                </div>
-                              </th>
-                              <td class="p-3 align-middle border-light">
-                                <p class="small">$250</p>
-                              </td>
-                              <td class="p-3 align-middle border-light">
-                                <div class=" border flex aic jcsb px-3">
-                                  <span class="small text-uppercase text-gray">Quantity</span>
-                                  <div class="quantity">
-                                    <button class="dec-btn p-0">
-                                      <i class="fas fa-caret-left"></i>
-                                    </button>
-                                    <input  class="form-control form-control-sm border-0 shadow-0 p-0" type="text" value="1"/>
-                                    <button class="inc-btn p-0">
-                                      <i class="fas fa-caret-right"></i>
-                                    </button>
-                                  </div>
-                                </div>
-                              </td>
-                              <td class="p-3 align-middle border-light">
-                                <p class="total-price small">$250</p>
-                              </td>
-                              <td  class="p-3 align-middle border-light" >
-                                <i class="fas fa-trash-alt text-muted"></i>
-                              </td>
-                            </tr>
                           </tbody>
                         </table>
                   </div>
                   <!-- SHOPPING CART NAVIGATION-->
                   <div class="bg-light px-4 py-3">
                     <div class="shopping-cart-navigation  row  ">
-                          <div class="ContinueShop"><i class="fas fa-long-arrow-alt-left"></i>  Continue shopping</div>
+                        <div style="font-weight:bold;text-align:end; cursor:pointer" class="delete">Delete all products &nbsp;<i class="fas fa-trash-alt text-muted" @click="clearCartitemsActions()"></i></div>
+                    </div> 
+                  </div>
+                  <div class="bg-light px-4 py-3">
+                    <div class="shopping-cart-navigation  row  ">
+                          <div class="ContinueShop">
+                            <RouterLink to="/shop">
+                              <i class="fas fa-long-arrow-alt-left"></i>  Continue shopping
+                            </RouterLink>
+                          </div>
                           <RouterLink to="/Cart/Checkout">
                             <div class="proceed">Procceed to checkout  <i class="fas fa-long-arrow-alt-right"></i></div>
                           </RouterLink>
@@ -115,12 +88,12 @@
                  <ul class="p-0">
                    <li class="flex aic jcsb">
                      <strong class="text-uppercase">Subtotal</strong>
-                     <span class="text-muted small">$250</span>
+                     <span class="text-muted small">{{cartTotalPrice}} FCFA</span>
                     </li>
                    <li class="border-bottom my-2"></li>
                    <li class="flex aic jcsb mb-4">
                      <strong class="text-uppercase">Total</strong>
-                     <span>$250</span>
+                     <span>{{cartTotalPrice}} FCFA</span>
                     </li>
                  </ul>
                </div>
@@ -131,32 +104,27 @@
 
 
 <script>
+import { mapState, mapGetters, mapActions } from "vuex";
 export default {
-  name: '', 
-  props: {
-    
+  computed: {
+     ...mapState({
+       cart : state => state.cartMod.cart 
+     }),
+     ...mapGetters({
+       cartTotalPrice:'cartMod/cartTotalPrice'
+       }),
   },
-
-  data() { 
-        return { 
-           // siblings : "",
-            
-        }
-    },
   methods: {
-      ReducedQuantity() {
-        var siblings = document.getElementById('InputQuantity');
-			  if (parseInt(siblings.value, 10) >= 1) {
-			  	siblings.value = parseInt(siblings.value, 10) - 1;
-			  }
-      },
-
-      MoreQuantity() {
-        var siblings = document.getElementById('InputQuantity');
-			   siblings.value = parseInt(siblings.value, 10) + 1;
-      }
-   },
-
+    ...mapActions({
+      removeItemCartActions:'cartMod/removeItemCartActions', 
+      clearCartitemsActions:'cartMod/clearCartitemsActions', 
+      getCartItemsActions:'cartMod/getCartItemsActions',
+    }) , 
+  },
+  mounted () {
+    scroll(0, 0);
+    // this.getCartItemsActions();
+  },
 }
 </script>
 
@@ -695,12 +663,15 @@ td p {
     display: flex;
   }
 .ContinueShop {
+  line-height: 2.5;
   text-align: left !important;
   margin-bottom: 0 !important;
   font-size: 0.875rem;
-  text-decoration: underline;
   cursor: pointer;
   flex: 3;
+}
+.ContinueShop a {
+  text-decoration: underline;
 }
 a[href="/Cart/Checkout"] {
   flex: 1;
@@ -714,12 +685,26 @@ a[href="/Cart/Checkout"] {
   border: 1px solid black;
   padding: 5px;
 }
-
 .proceed:hover {
   cursor: pointer;
   background-color: #000;
   color: white;
 }
+.shopping-cart-table{
+  max-height: 296.1px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+.delete:hover{
+  color: red !important;
+}
+.delete:hover i{
+  color: red !important;
+}
+.fas.fa-trash-alt.text-muted:hover {
+  color: red !important;
+}
+
 
 /*CART TOTAL*/
 .card-total {
